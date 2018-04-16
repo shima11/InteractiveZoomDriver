@@ -12,6 +12,7 @@
 		D4F8ABF9208451F100EA9288 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8ABF7208451F100EA9288 /* Main.storyboard */; };
 		D4F8ABFB208451F400EA9288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F8ABFA208451F400EA9288 /* Assets.xcassets */; };
 		D4F8ABFE208451F400EA9288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8ABFC208451F400EA9288 /* LaunchScreen.storyboard */; };
+		D4F8AC062084558700EA9288 /* PinchableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8AC052084558700EA9288 /* PinchableImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		D4F8ABFA208451F400EA9288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4F8ABFD208451F400EA9288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4F8ABFF208451F400EA9288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4F8AC052084558700EA9288 /* PinchableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchableImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				D4F8ABF3208451F100EA9288 /* AppDelegate.swift */,
 				D4F8ABF5208451F100EA9288 /* ViewController.swift */,
+				D4F8AC052084558700EA9288 /* PinchableImageView.swift */,
 				D4F8ABF7208451F100EA9288 /* Main.storyboard */,
 				D4F8ABFA208451F400EA9288 /* Assets.xcassets */,
 				D4F8ABFC208451F400EA9288 /* LaunchScreen.storyboard */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F8ABF6208451F100EA9288 /* ViewController.swift in Sources */,
+				D4F8AC062084558700EA9288 /* PinchableImageView.swift in Sources */,
 				D4F8ABF4208451F100EA9288 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
