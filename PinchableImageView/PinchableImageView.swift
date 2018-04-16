@@ -101,10 +101,10 @@ class PinchDetector: UIView, UIGestureRecognizerDelegate {
 
             UIView.animate(withDuration: 0.2, animations: {
                 self.targetView.frame = self.originalRect
+                self.delegate.pinchScale(value: 1.0)
             }, completion: { _ in
                 self.isZooming = false
                 self.targetView.removeFromSuperview()
-                self.delegate.pinchScale(value: 1.0)
                 self.frontWindow.isHidden = true
                 self.sourceView.isHidden = false
             })
