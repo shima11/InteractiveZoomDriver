@@ -9,36 +9,33 @@
 import UIKit
 
 
-protocol PinchDetectorDelegate {
+protocol PinchDetectorDelegate : class {
 
     func pinchScale(value: CGFloat)
 }
 
-extension UIView {
-    func copyView<T: UIView>() -> T {
-        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
-    }
-}
+class PinchDetectorView: UIView, UIGestureRecognizerDelegate {
 
+    weak var delegate: PinchDetectorDelegate?
 
-class PinchDetector: UIView, UIGestureRecognizerDelegate {
-
-    var delegate: PinchDetectorDelegate!
-
-    var targetView: UIView
     let sourceView: UIView
-    let originalRect: CGRect
 
     var isZooming = false
-    var frontWindow: UIWindow = UIWindow()
+    let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 
-    init(frame: CGRect, sourceView: UIView) {
+    let targetViewFactory: () throws -> UIView
 
+    var currentIntereactingView: UIView?
+
+    init(
+        sourceView: UIView,
+        targetViewFactory: @escaping () throws -> UIView
+        ) {
+
+        self.targetViewFactory = targetViewFactory
         self.sourceView = sourceView
-        self.targetView = sourceView.copyView()
-        self.originalRect = sourceView.frame
 
-        super.init(frame: frame)
+        super.init(frame: .zero)
 
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
         pinchGesture.delegate = self
@@ -47,8 +44,6 @@ class PinchDetector: UIView, UIGestureRecognizerDelegate {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.pan(sender:)))
         panGesture.delegate = self
         addGestureRecognizer(panGesture)
-
-        frontWindow = UIWindow(frame: UIScreen.main.bounds)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -60,19 +55,40 @@ class PinchDetector: UIView, UIGestureRecognizerDelegate {
         switch sender.state {
         case .began:
 
-            targetView = sourceView.copyView()
-            sourceView.isHidden = true
-            targetView.isUserInteractionEnabled = true
-            frontWindow.addSubview(targetView)
-            frontWindow.isHidden = false
+            _ = Measure.run(name: "began", threshold: 0.003) {
 
-            let currentScale = targetView.frame.size.width / targetView.bounds.size.width
-            let newScale = currentScale * sender.scale
-            if newScale > 1 {
-                self.isZooming = true
+                do {
+
+                    currentIntereactingView = try targetViewFactory()
+
+                } catch {
+
+                    print(error)
+                }
+
+                guard let targetView = currentIntereactingView else {
+                    return
+                }
+
+                targetView.frame = sourceView.convert(sourceView.bounds, to: frontWindow)
+                sourceView.isHidden = true
+                targetView.isUserInteractionEnabled = true
+                frontWindow.addSubview(targetView)
+                frontWindow.isHidden = false
+
+                let currentScale = targetView.frame.size.width / targetView.bounds.size.width
+                let newScale = currentScale * sender.scale
+                if newScale > 1 {
+                    isZooming = true
+                }
             }
 
+
         case .changed:
+
+            guard let targetView = currentIntereactingView else {
+                return
+            }
 
             let currentScale = targetView.frame.size.width / targetView.bounds.size.width
             var newScale = currentScale * sender.scale
@@ -83,28 +99,36 @@ class PinchDetector: UIView, UIGestureRecognizerDelegate {
                 targetView.transform = transform
             }
             else {
+
                 let pinchCenter = CGPoint(
                     x: sender.location(in: targetView).x - targetView.bounds.midX,
                     y: sender.location(in: targetView).y - targetView.bounds.midY
                 )
-                let transform = targetView.transform
+
+                targetView.transform = targetView.transform
                     .translatedBy(x: pinchCenter.x, y: pinchCenter.y)
                     .scaledBy(x: sender.scale, y: sender.scale)
                     .translatedBy(x: -pinchCenter.x, y: -pinchCenter.y)
-                targetView.transform = transform
+
             }
             sender.scale = 1
 
-            delegate.pinchScale(value: newScale)
+            delegate?.pinchScale(value: newScale)
+            updateBackgroundColor(progress: newScale)
 
         case .cancelled, .failed, .ended:
 
+            guard let targetView = currentIntereactingView else {
+                return
+            }
+
             UIView.animate(withDuration: 0.2, animations: {
-                self.targetView.frame = self.originalRect
-                self.delegate.pinchScale(value: 1.0)
+                targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
+                self.frontWindow.backgroundColor = .clear
+//                self.delegate?.pinchScale(value: 1.0)
             }, completion: { _ in
                 self.isZooming = false
-                self.targetView.removeFromSuperview()
+                targetView.removeFromSuperview()
                 self.frontWindow.isHidden = true
                 self.sourceView.isHidden = false
             })
@@ -119,10 +143,12 @@ class PinchDetector: UIView, UIGestureRecognizerDelegate {
         if isZooming == false { return }
 
         switch sender.state {
-        case .began:
-            break
-
         case .changed:
+
+            guard let targetView = currentIntereactingView else {
+                return
+            }
+
             let translation = sender.translation(in: self)
             targetView.center = CGPoint(x: targetView.center.x + translation.x, y: targetView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: targetView.superview)
@@ -131,6 +157,12 @@ class PinchDetector: UIView, UIGestureRecognizerDelegate {
             break
 
         }
+    }
+
+    private func updateBackgroundColor(progress: CGFloat) {
+        let scale = (progress - 1) / 4
+        let alpha = scale > 0.6 ? 0.6 : scale
+        frontWindow.backgroundColor = UIColor(white: 0, alpha: alpha)
     }
 
     // Memo: 複数のジェスチャを許可するDelegate
