@@ -12,71 +12,129 @@ import UIKit
 protocol PinchDetectorDelegate {
 
     func pinchScale(value: CGFloat)
-    func targetView() -> UIView
 }
 
-class PinchDetector: UIView {
+extension UIView {
+    func copyView<T: UIView>() -> T {
+        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
+    }
+}
+
+
+class PinchDetector: UIView, UIGestureRecognizerDelegate {
 
     var delegate: PinchDetectorDelegate!
 
-    override init(frame: CGRect) {
+    var targetView: UIView
+    let sourceView: UIView
+    let originalRect: CGRect
+
+    var isZooming = false
+    var frontWindow: UIWindow = UIWindow()
+
+    init(frame: CGRect, sourceView: UIView) {
+
+        self.sourceView = sourceView
+        self.targetView = sourceView.copyView()
+        self.originalRect = sourceView.frame
+
         super.init(frame: frame)
 
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchAction(sender:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
+        pinchGesture.delegate = self
         addGestureRecognizer(pinchGesture)
+
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.pan(sender:)))
+        panGesture.delegate = self
+        addGestureRecognizer(panGesture)
+
+        frontWindow = UIWindow(frame: UIScreen.main.bounds)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func pinchAction(sender: UIPinchGestureRecognizer) {
-
-        delegate.pinchScale(value: sender.scale)
+    @objc func pinch(sender: UIPinchGestureRecognizer) {
 
         switch sender.state {
         case .began:
-            print("began")
+
+            targetView = sourceView.copyView()
+            sourceView.isHidden = true
+            targetView.isUserInteractionEnabled = true
+            frontWindow.addSubview(targetView)
+            frontWindow.isHidden = false
+
+            let currentScale = targetView.frame.size.width / targetView.bounds.size.width
+            let newScale = currentScale * sender.scale
+            if newScale > 1 {
+                self.isZooming = true
+            }
+
         case .changed:
-            print("changed")
+
+            let currentScale = targetView.frame.size.width / targetView.bounds.size.width
+            var newScale = currentScale * sender.scale
+
+            if newScale < 1 {
+                newScale = 1
+                let transform = CGAffineTransform(scaleX: newScale, y: newScale)
+                targetView.transform = transform
+            }
+            else {
+                let pinchCenter = CGPoint(
+                    x: sender.location(in: targetView).x - targetView.bounds.midX,
+                    y: sender.location(in: targetView).y - targetView.bounds.midY
+                )
+                let transform = targetView.transform
+                    .translatedBy(x: pinchCenter.x, y: pinchCenter.y)
+                    .scaledBy(x: sender.scale, y: sender.scale)
+                    .translatedBy(x: -pinchCenter.x, y: -pinchCenter.y)
+                targetView.transform = transform
+            }
+            sender.scale = 1
+
+            delegate.pinchScale(value: newScale)
+
         case .cancelled, .failed, .ended:
-            print("end")
-            delegate.pinchScale(value: 1.0)
+
+            UIView.animate(withDuration: 0.2, animations: {
+                self.targetView.frame = self.originalRect
+            }, completion: { _ in
+                self.isZooming = false
+                self.targetView.removeFromSuperview()
+                self.delegate.pinchScale(value: 1.0)
+                self.frontWindow.isHidden = true
+                self.sourceView.isHidden = false
+            })
+
         default:
             break
         }
     }
+
+    @objc func pan(sender: UIPanGestureRecognizer) {
+
+        if isZooming == false { return }
+
+        switch sender.state {
+        case .began:
+            break
+
+        case .changed:
+            let translation = sender.translation(in: self)
+            targetView.center = CGPoint(x: targetView.center.x + translation.x, y: targetView.center.y + translation.y)
+            sender.setTranslation(CGPoint.zero, in: targetView.superview)
+
+        default:
+            break
+
+        }
+    }
+
+    // Memo: 複数のジェスチャを許可するDelegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }
-
-
-
-//class PinchableImageView: UIView {
-//
-//    let imageView: UIImageView
-//    let pinchGesture: UIPinchGestureRecognizer
-//
-//    init(frame: CGRect) {
-//
-//        super.init(frame: frame)
-//
-//
-//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture(sender:)))
-//        self.imageView.addGestureRecognizer(pinchGesture)
-//        self.imageView.addGestureRecognizer(panGesture)
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    @objc func pinchGesture(sender: UIPinchGestureRecognizer) {
-//        print("pinch:")
-//        print(sender.scale)
-//    }
-//
-//    @objc func panGesture(sender: UIPanGestureRecognizer) {
-//        print("pan:")
-//        print(sender.translation(in: self))
-//    }
-//}
-
