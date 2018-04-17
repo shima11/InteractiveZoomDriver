@@ -19,6 +19,10 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
 
     var currentIntereactingView: UIView?
 
+    private lazy var pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
+
+    private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.pan(sender:)))
+
     public init(
         gestureTargetView: UIView,
         sourceView: T,
@@ -30,11 +34,9 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
 
         super.init()
 
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
         pinchGesture.delegate = self
         gestureTargetView.addGestureRecognizer(pinchGesture)
 
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.pan(sender:)))
         panGesture.delegate = self
         gestureTargetView.addGestureRecognizer(panGesture)
     }
@@ -42,6 +44,12 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
     @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+
+        pinchGesture.view?.removeGestureRecognizer(pinchGesture)
+        panGesture.view?.removeGestureRecognizer(panGesture)
     }
 
     @objc private func pinch(sender: UIPinchGestureRecognizer) {
@@ -163,7 +171,7 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
     }
 }
 
-class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
+public class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
     var isZooming: Bool {
         return driver.isZooming
@@ -171,7 +179,7 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
     private var driver: PinchGestureDriver<T>!
 
-    init(
+    public init(
         sourceView: T,
         targetViewFactory: @escaping (T) throws -> UIView
         ) {
@@ -185,7 +193,7 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
         )
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -210,3 +218,4 @@ extension PinchDetectorView where T : UIImageView {
         self.init(sourceView: sourceView, targetViewFactory: PinchDetectorView.clone)
     }
 }
+
