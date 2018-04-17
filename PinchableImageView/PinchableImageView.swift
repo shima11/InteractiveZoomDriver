@@ -14,22 +14,22 @@ protocol PinchDetectorDelegate : class {
     func pinchScale(value: CGFloat)
 }
 
-class PinchDetectorView: UIView, UIGestureRecognizerDelegate {
+class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
     weak var delegate: PinchDetectorDelegate?
 
-    let sourceView: UIView
+    let sourceView: T
 
     var isZooming = false
     let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 
-    let targetViewFactory: () throws -> UIView
+    let targetViewFactory: (T) throws -> UIView
 
     var currentIntereactingView: UIView?
 
     init(
-        sourceView: UIView,
-        targetViewFactory: @escaping () throws -> UIView
+        sourceView: T,
+        targetViewFactory: @escaping (T) throws -> UIView
         ) {
 
         self.targetViewFactory = targetViewFactory
@@ -59,7 +59,7 @@ class PinchDetectorView: UIView, UIGestureRecognizerDelegate {
 
                 do {
 
-                    currentIntereactingView = try targetViewFactory()
+                    currentIntereactingView = try targetViewFactory(sourceView)
 
                 } catch {
 
@@ -122,10 +122,9 @@ class PinchDetectorView: UIView, UIGestureRecognizerDelegate {
                 return
             }
 
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState], animations: {
                 targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
                 self.frontWindow.backgroundColor = .clear
-//                self.delegate?.pinchScale(value: 1.0)
             }, completion: { _ in
                 self.isZooming = false
                 targetView.removeFromSuperview()
@@ -168,5 +167,25 @@ class PinchDetectorView: UIView, UIGestureRecognizerDelegate {
     // Memo: 複数のジェスチャを許可するDelegate
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+extension PinchDetectorView {
+
+    static func clone(from fromImageView: UIImageView) -> UIImageView {
+        let view = UIImageView()
+        view.image = fromImageView.image
+        view.clipsToBounds = fromImageView.clipsToBounds
+        view.contentMode = fromImageView.contentMode
+        return view
+    }
+}
+
+extension PinchDetectorView where T : UIImageView {
+
+    convenience init(
+        sourceView: T
+        ) {
+        self.init(sourceView: sourceView, targetViewFactory: PinchDetectorView.clone)
     }
 }
