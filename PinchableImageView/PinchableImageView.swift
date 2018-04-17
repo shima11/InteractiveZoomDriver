@@ -8,15 +8,7 @@
 
 import UIKit
 
-
-protocol PinchDetectorDelegate : class {
-
-    func pinchScale(value: CGFloat)
-}
-
-class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
-
-    weak var delegate: PinchDetectorDelegate?
+public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelegate {
 
     let sourceView: T
 
@@ -27,7 +19,8 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
     var currentIntereactingView: UIView?
 
-    init(
+    public init(
+        gestureTargetView: UIView,
         sourceView: T,
         targetViewFactory: @escaping (T) throws -> UIView
         ) {
@@ -35,22 +28,23 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
         self.targetViewFactory = targetViewFactory
         self.sourceView = sourceView
 
-        super.init(frame: .zero)
+        super.init()
 
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
         pinchGesture.delegate = self
-        addGestureRecognizer(pinchGesture)
+        gestureTargetView.addGestureRecognizer(pinchGesture)
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.pan(sender:)))
         panGesture.delegate = self
-        addGestureRecognizer(panGesture)
+        gestureTargetView.addGestureRecognizer(panGesture)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func pinch(sender: UIPinchGestureRecognizer) {
+    @objc private func pinch(sender: UIPinchGestureRecognizer) {
 
         switch sender.state {
         case .began:
@@ -113,7 +107,6 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
             }
             sender.scale = 1
 
-            delegate?.pinchScale(value: newScale)
             updateBackgroundColor(progress: newScale)
 
         case .cancelled, .failed, .ended:
@@ -137,7 +130,7 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
         }
     }
 
-    @objc func pan(sender: UIPanGestureRecognizer) {
+    @objc private func pan(sender: UIPanGestureRecognizer) {
 
         if isZooming == false { return }
 
@@ -148,7 +141,7 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
                 return
             }
 
-            let translation = sender.translation(in: self)
+            let translation = sender.translation(in: sender.view)
             targetView.center = CGPoint(x: targetView.center.x + translation.x, y: targetView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: targetView.superview)
 
@@ -165,9 +158,37 @@ class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
     }
 
     // Memo: 複数のジェスチャを許可するDelegate
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+}
+
+class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
+
+    var isZooming: Bool {
+        return driver.isZooming
+    }
+
+    private var driver: PinchGestureDriver<T>!
+
+    init(
+        sourceView: T,
+        targetViewFactory: @escaping (T) throws -> UIView
+        ) {
+
+        super.init(frame: .zero)
+
+        self.driver = PinchGestureDriver(
+            gestureTargetView: self,
+            sourceView: sourceView,
+            targetViewFactory: targetViewFactory
+        )
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
 
 extension PinchDetectorView {

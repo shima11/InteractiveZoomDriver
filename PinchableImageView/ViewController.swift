@@ -18,18 +18,17 @@ class ViewController: UIViewController {
         sourceView: self.imageView1
     )
 
-    private lazy var overlayView2 = PinchDetectorView(
-        sourceView: self.imageView2
-    )
+    private lazy var driver = PinchGestureDriver(gestureTargetView: imageView2, sourceView: imageView2, targetViewFactory: PinchDetectorView.clone)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        overlayView1.delegate = self
         containerView.addSubview(overlayView1)
+//        containerView.addSubview(overlayView2)
 
-        overlayView2.delegate = self
-        containerView.addSubview(overlayView2)
+        imageView2.isUserInteractionEnabled = true
+
+        _ = driver
 
     }
 
@@ -37,15 +36,6 @@ class ViewController: UIViewController {
     super.viewDidLayoutSubviews()
 
     overlayView1.frame = imageView1.frame
-    overlayView2.frame = imageView2.frame
 
   }
-}
-
-extension ViewController: PinchDetectorDelegate {
-
-    func pinchScale(value: CGFloat) {
-
-    }
-
 }
