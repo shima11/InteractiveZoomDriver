@@ -70,6 +70,7 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
                 return
             }
 
+            targetView.transform = .identity
             targetView.frame = sourceView.convert(sourceView.bounds, to: frontWindow)
             sourceView.isHidden = true
             targetView.isUserInteractionEnabled = true
@@ -89,7 +90,9 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
                 return
             }
 
-            let currentScale = targetView.frame.size.width / targetView.bounds.size.width
+            assert(targetView.transform.a == targetView.transform.d)
+
+            let currentScale = targetView.transform.a
             var newScale = currentScale * sender.scale
 
             if newScale < 1 {
@@ -121,6 +124,7 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
             }
 
             UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState], animations: {
+                targetView.transform = .identity
                 targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
                 self.frontWindow.backgroundColor = .clear
             }, completion: { _ in
