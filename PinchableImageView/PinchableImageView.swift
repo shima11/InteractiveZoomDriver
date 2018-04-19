@@ -57,32 +57,29 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
         switch sender.state {
         case .began:
 
-            _ = Measure.run(name: "began", threshold: 0.003) {
+            do {
 
-                do {
+                currentIntereactingView = try targetViewFactory(sourceView)
 
-                    currentIntereactingView = try targetViewFactory(sourceView)
+            } catch {
 
-                } catch {
+                print(error)
+            }
 
-                    print(error)
-                }
+            guard let targetView = currentIntereactingView else {
+                return
+            }
 
-                guard let targetView = currentIntereactingView else {
-                    return
-                }
+            targetView.frame = sourceView.convert(sourceView.bounds, to: frontWindow)
+            sourceView.isHidden = true
+            targetView.isUserInteractionEnabled = true
+            frontWindow.addSubview(targetView)
+            frontWindow.isHidden = false
 
-                targetView.frame = sourceView.convert(sourceView.bounds, to: frontWindow)
-                sourceView.isHidden = true
-                targetView.isUserInteractionEnabled = true
-                frontWindow.addSubview(targetView)
-                frontWindow.isHidden = false
-
-                let currentScale = targetView.frame.size.width / targetView.bounds.size.width
-                let newScale = currentScale * sender.scale
-                if newScale > 1 {
-                    isZooming = true
-                }
+            let currentScale = targetView.frame.size.width / targetView.bounds.size.width
+            let newScale = currentScale * sender.scale
+            if newScale > 1 {
+                isZooming = true
             }
 
 
@@ -165,9 +162,16 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
         frontWindow.backgroundColor = UIColor(white: 0, alpha: alpha)
     }
 
-    // Memo: 複数のジェスチャを許可するDelegate
+    @objc
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+
+        if gestureRecognizer.numberOfTouches == 1 {
+            return true
+        }
+        if otherGestureRecognizer == pinchGesture {
+            return true
+        }
+        return false
     }
 }
 
