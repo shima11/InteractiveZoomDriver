@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelegate {
+public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDelegate {
 
     let sourceView: T
 
@@ -188,13 +188,13 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
     }
 }
 
-public class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
+public class InteractiveZoomView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
     var isZooming: Bool {
         return driver.isZooming
     }
 
-    private var driver: PinchGestureDriver<T>!
+    private var driver: InteractiveZoomDriver<T>!
 
     public init(
         sourceView: T,
@@ -204,7 +204,7 @@ public class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
         super.init(frame: .zero)
 
-        self.driver = PinchGestureDriver(
+        self.driver = InteractiveZoomDriver(
             gestureTargetView: self,
             sourceView: sourceView,
             targetViewFactory: targetViewFactory,
@@ -218,7 +218,7 @@ public class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
 }
 
-extension PinchDetectorView {
+extension InteractiveZoomView {
 
     static func clone(from fromImageView: UIImageView) -> UIImageView {
         let view = UIImageView()
@@ -230,7 +230,7 @@ extension PinchDetectorView {
 
 }
 
-extension PinchDetectorView where T : UIImageView {
+extension InteractiveZoomView where T : UIImageView {
 
     static func shouldZoomTransform(sourceView: T) -> Bool {
 
@@ -243,7 +243,7 @@ extension PinchDetectorView where T : UIImageView {
     convenience init(
         sourceView: T
         ) {
-        self.init(sourceView: sourceView, targetViewFactory: PinchDetectorView.clone, shouldZoomTransform: PinchDetectorView.shouldZoomTransform)
+        self.init(sourceView: sourceView, targetViewFactory: InteractiveZoomView.clone, shouldZoomTransform: InteractiveZoomView.shouldZoomTransform)
     }
 }
 

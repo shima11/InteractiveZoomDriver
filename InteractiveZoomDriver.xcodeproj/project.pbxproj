@@ -13,19 +13,19 @@
 		D4F8ABF9208451F100EA9288 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8ABF7208451F100EA9288 /* Main.storyboard */; };
 		D4F8ABFB208451F400EA9288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F8ABFA208451F400EA9288 /* Assets.xcassets */; };
 		D4F8ABFE208451F400EA9288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8ABFC208451F400EA9288 /* LaunchScreen.storyboard */; };
-		D4F8AC062084558700EA9288 /* PinchableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8AC052084558700EA9288 /* PinchableImageView.swift */; };
+		D4F8AC062084558700EA9288 /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8AC052084558700EA9288 /* InteractiveZoomDriver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4BA3C4A32084CC9600670F58 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
-		D4F8ABF0208451F100EA9288 /* PinchableImageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinchableImageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4F8ABF0208451F100EA9288 /* InteractiveZoomDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveZoomDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F8ABF3208451F100EA9288 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4F8ABF5208451F100EA9288 /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		D4F8ABF8208451F100EA9288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4F8ABFA208451F400EA9288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4F8ABFD208451F400EA9288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4F8ABFF208451F400EA9288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4F8AC052084558700EA9288 /* PinchableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchableImageView.swift; sourceTree = "<group>"; };
+		D4F8AC052084558700EA9288 /* InteractiveZoomDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,7 @@
 		D4F8ABE7208451F100EA9288 = {
 			isa = PBXGroup;
 			children = (
-				D4F8ABF2208451F100EA9288 /* PinchableImageView */,
+				D4F8ABF2208451F100EA9288 /* InteractiveZoomDriver */,
 				D4F8ABF1208451F100EA9288 /* Products */,
 			);
 			indentWidth = 4;
@@ -52,32 +52,32 @@
 		D4F8ABF1208451F100EA9288 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4F8ABF0208451F100EA9288 /* PinchableImageView.app */,
+				D4F8ABF0208451F100EA9288 /* InteractiveZoomDriver.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D4F8ABF2208451F100EA9288 /* PinchableImageView */ = {
+		D4F8ABF2208451F100EA9288 /* InteractiveZoomDriver */ = {
 			isa = PBXGroup;
 			children = (
 				D4F8ABF3208451F100EA9288 /* AppDelegate.swift */,
 				D4F8ABF5208451F100EA9288 /* ViewController.swift */,
 				4BA3C4A32084CC9600670F58 /* Measure.swift */,
-				D4F8AC052084558700EA9288 /* PinchableImageView.swift */,
+				D4F8AC052084558700EA9288 /* InteractiveZoomDriver.swift */,
 				D4F8ABF7208451F100EA9288 /* Main.storyboard */,
 				D4F8ABFA208451F400EA9288 /* Assets.xcassets */,
 				D4F8ABFC208451F400EA9288 /* LaunchScreen.storyboard */,
 				D4F8ABFF208451F400EA9288 /* Info.plist */,
 			);
-			path = PinchableImageView;
+			path = InteractiveZoomDriver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D4F8ABEF208451F100EA9288 /* PinchableImageView */ = {
+		D4F8ABEF208451F100EA9288 /* InteractiveZoomDriver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4F8AC02208451F400EA9288 /* Build configuration list for PBXNativeTarget "PinchableImageView" */;
+			buildConfigurationList = D4F8AC02208451F400EA9288 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriver" */;
 			buildPhases = (
 				D4F8ABEC208451F100EA9288 /* Sources */,
 				D4F8ABED208451F100EA9288 /* Frameworks */,
@@ -87,9 +87,9 @@
 			);
 			dependencies = (
 			);
-			name = PinchableImageView;
+			name = InteractiveZoomDriver;
 			productName = PinchableImageView;
-			productReference = D4F8ABF0208451F100EA9288 /* PinchableImageView.app */;
+			productReference = D4F8ABF0208451F100EA9288 /* InteractiveZoomDriver.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -107,7 +107,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D4F8ABEB208451F100EA9288 /* Build configuration list for PBXProject "PinchableImageView" */;
+			buildConfigurationList = D4F8ABEB208451F100EA9288 /* Build configuration list for PBXProject "InteractiveZoomDriver" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -120,7 +120,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4F8ABEF208451F100EA9288 /* PinchableImageView */,
+				D4F8ABEF208451F100EA9288 /* InteractiveZoomDriver */,
 			);
 		};
 /* End PBXProject section */
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F8ABF6208451F100EA9288 /* ViewController.swift in Sources */,
-				D4F8AC062084558700EA9288 /* PinchableImageView.swift in Sources */,
+				D4F8AC062084558700EA9288 /* InteractiveZoomDriver.swift in Sources */,
 				4BA3C4A42084CC9600670F58 /* Measure.swift in Sources */,
 				D4F8ABF4208451F100EA9288 /* AppDelegate.swift in Sources */,
 			);
@@ -290,16 +290,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JX92XL88RZ;
-				INFOPLIST_FILE = PinchableImageView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = InteractiveZoomDriver/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = shima.app.PinchableImageView;
+				PRODUCT_BUNDLE_IDENTIFIER = shima.app.InteractiveZoomDriver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -309,16 +311,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JX92XL88RZ;
-				INFOPLIST_FILE = PinchableImageView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = InteractiveZoomDriver/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = shima.app.PinchableImageView;
+				PRODUCT_BUNDLE_IDENTIFIER = shima.app.InteractiveZoomDriver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -327,7 +331,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D4F8ABEB208451F100EA9288 /* Build configuration list for PBXProject "PinchableImageView" */ = {
+		D4F8ABEB208451F100EA9288 /* Build configuration list for PBXProject "InteractiveZoomDriver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4F8AC00208451F400EA9288 /* Debug */,
@@ -336,7 +340,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4F8AC02208451F400EA9288 /* Build configuration list for PBXNativeTarget "PinchableImageView" */ = {
+		D4F8AC02208451F400EA9288 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4F8AC03208451F400EA9288 /* Debug */,

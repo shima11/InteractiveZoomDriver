@@ -14,18 +14,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView2: UIImageView!
     @IBOutlet weak var containerView: UIView!
 
-    private lazy var overlayView1 = PinchDetectorView(
+    private lazy var overlayView1 = InteractiveZoomView(
         sourceView: self.imageView1
     )
 
-    private lazy var driver = PinchGestureDriver(gestureTargetView: imageView2, sourceView: imageView2, targetViewFactory: PinchDetectorView.clone, shouldZoomTransform: PinchDetectorView.shouldZoomTransform)
+    private lazy var driver = InteractiveZoomDriver(gestureTargetView: imageView2, sourceView: imageView2, targetViewFactory: InteractiveZoomView.clone, shouldZoomTransform: InteractiveZoomView.shouldZoomTransform)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         containerView.addSubview(overlayView1)
 
-        imageView2.isUserInteractionEnabled = true
+//        imageView2.isUserInteractionEnabled = true
 
         _ = driver
     }

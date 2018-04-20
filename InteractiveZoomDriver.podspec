@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "PinchableImageView"
+  s.name         = "InteractiveZoomDriver"
   s.version      = "0.0.1"
   s.summary      = "UIView to zoomable by pinch gesture."
 
@@ -91,12 +91,12 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files = "PinchableImageView", "PinchableImageView/**/*.{h,m,swift}"
+  s.source_files = "InteractiveZoomDriver", "InteractiveZoomDriver/**/*.{h,m,swift}"
 
   # s.public_header_files = "Classes/**/*.h"
 
 
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  # ――― Resources ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
   #  target bundle with a build phase script. Anything else will be cleaned.
