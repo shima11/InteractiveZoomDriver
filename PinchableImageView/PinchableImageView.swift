@@ -17,6 +17,8 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
 
     let targetViewFactory: (T) throws -> UIView
 
+    let shouldZoomTransform: (T) -> Bool
+
     var currentIntereactingView: UIView?
 
     private lazy var pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
@@ -26,11 +28,13 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
     public init(
         gestureTargetView: UIView,
         sourceView: T,
-        targetViewFactory: @escaping (T) throws -> UIView
+        targetViewFactory: @escaping (T) throws -> UIView,
+        shouldZoomTransform: @escaping (T) -> Bool
         ) {
 
         self.targetViewFactory = targetViewFactory
         self.sourceView = sourceView
+        self.shouldZoomTransform = shouldZoomTransform
 
         super.init()
 
@@ -53,6 +57,11 @@ public class PinchGestureDriver<T: UIView> : NSObject, UIGestureRecognizerDelega
     }
 
     @objc private func pinch(sender: UIPinchGestureRecognizer) {
+
+        if shouldZoomTransform(sourceView) == false {
+
+            return
+        }
 
         switch sender.state {
         case .began:
@@ -189,7 +198,8 @@ public class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
 
     public init(
         sourceView: T,
-        targetViewFactory: @escaping (T) throws -> UIView
+        targetViewFactory: @escaping (T) throws -> UIView,
+        shouldZoomTransform: @escaping (T) -> Bool
         ) {
 
         super.init(frame: .zero)
@@ -197,7 +207,8 @@ public class PinchDetectorView<T: UIView>: UIView, UIGestureRecognizerDelegate {
         self.driver = PinchGestureDriver(
             gestureTargetView: self,
             sourceView: sourceView,
-            targetViewFactory: targetViewFactory
+            targetViewFactory: targetViewFactory,
+            shouldZoomTransform: shouldZoomTransform
         )
     }
 
@@ -216,14 +227,23 @@ extension PinchDetectorView {
         view.contentMode = fromImageView.contentMode
         return view
     }
+
 }
 
 extension PinchDetectorView where T : UIImageView {
 
+    static func shouldZoomTransform(sourceView: T) -> Bool {
+
+        if sourceView.image == nil {
+            return false
+        }
+        return true
+    }
+
     convenience init(
         sourceView: T
         ) {
-        self.init(sourceView: sourceView, targetViewFactory: PinchDetectorView.clone)
+        self.init(sourceView: sourceView, targetViewFactory: PinchDetectorView.clone, shouldZoomTransform: PinchDetectorView.shouldZoomTransform)
     }
 }
 
