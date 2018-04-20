@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint PinchableImageView.podspec' to ensure this is a
+#  Be sure to run `pod spec lint InteractiveZoomDriver.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
         This repo is view to zoomable by pinch gesture.
     DESC
 
-  s.homepage     = "https://github.com/shima11/PinchableImageView"
+  s.homepage     = "https://github.com/shima11/InteractiveZoomDriver"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -81,7 +81,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/shima11/PinchableImageView.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/shima11/InteractiveZoomDriver.git", :tag => "#{s.version}" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
