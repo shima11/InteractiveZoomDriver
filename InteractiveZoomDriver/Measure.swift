@@ -1,6 +1,6 @@
 //
 //  Measure.swift
-//  PinchableImageView
+//  InteractiveZoomDriver
 //
 //  Created by muukii on 4/16/18.
 //  Copyright © 2018 Jinsei Shima. All rights reserved.

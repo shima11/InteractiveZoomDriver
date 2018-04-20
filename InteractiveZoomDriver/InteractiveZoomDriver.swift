@@ -1,6 +1,6 @@
 //
-//  PinchableImageView.swift
-//  PinchableImageView
+//  InteractiveZoomDriver.swift
+//  InteractiveZoomDriver
 //
 //  Created by Jinsei Shima on 2018/04/16.
 //  Copyright © 2018 Jinsei Shima. All rights reserved.
@@ -17,7 +17,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
     let targetViewFactory: (T) throws -> UIView
 
-    let shouldZoomTransform: (T) -> Bool
+    let shouldZoomTransform: (T) throws -> Bool
 
     var currentIntereactingView: UIView?
 
@@ -29,7 +29,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         gestureTargetView: UIView,
         sourceView: T,
         targetViewFactory: @escaping (T) throws -> UIView,
-        shouldZoomTransform: @escaping (T) -> Bool
+        shouldZoomTransform: @escaping (T) throws -> Bool
         ) {
 
         self.targetViewFactory = targetViewFactory
@@ -58,7 +58,14 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
     @objc private func pinch(sender: UIPinchGestureRecognizer) {
 
-        if shouldZoomTransform(sourceView) == false {
+        do {
+
+            let isZoom = try shouldZoomTransform(sourceView)
+            if isZoom == false {
+                return
+            }
+        }
+        catch {
 
             return
         }
@@ -69,8 +76,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
             do {
 
                 currentIntereactingView = try targetViewFactory(sourceView)
-
-            } catch {
+            }
+            catch {
 
                 print(error)
             }

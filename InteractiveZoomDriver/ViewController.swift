@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  PinchableImageView
+//  InteractiveZoomDriver
 //
 //  Created by Jinsei Shima on 2018/04/16.
 //  Copyright © 2018 Jinsei Shima. All rights reserved.
