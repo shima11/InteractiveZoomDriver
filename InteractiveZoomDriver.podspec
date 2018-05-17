@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint PinchableImageView.podspec' to ensure this is a
+#  Be sure to run `pod spec lint InteractiveZoomDriver.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "PinchableImageView"
+  s.name         = "InteractiveZoomDriver"
   s.version      = "0.0.1"
   s.summary      = "UIView to zoomable by pinch gesture."
 
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
         This repo is view to zoomable by pinch gesture.
     DESC
 
-  s.homepage     = "https://github.com/shima11/PinchableImageView"
+  s.homepage     = "https://github.com/shima11/InteractiveZoomDriver"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -81,7 +81,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/shima11/PinchableImageView.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/shima11/InteractiveZoomDriver.git", :tag => "#{s.version}" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -91,12 +91,12 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files = "PinchableImageView", "PinchableImageView/**/*.{h,m,swift}"
+  s.source_files = "InteractiveZoomDriver", "InteractiveZoomDriver/**/*.{h,m,swift}"
 
   # s.public_header_files = "Classes/**/*.h"
 
 
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  # ――― Resources ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  A list of resources included with the Pod. These are copied into the
   #  target bundle with a build phase script. Anything else will be cleaned.
