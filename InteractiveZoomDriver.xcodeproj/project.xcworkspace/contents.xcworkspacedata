@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/shima/work/pairs-gl-ios/Vendor/PinchableImageView/InteractiveZoomDriver.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

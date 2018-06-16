@@ -1,9 +1,8 @@
 //
 //  ViewController.swift
-//  InteractiveZoomDriver
+//  Demo
 //
-//  Created by Jinsei Shima on 2018/04/16.
-//  Copyright © 2018 Jinsei Shima. All rights reserved.
+//  Created by jinsei shima on 2018/06/17.
 //
 
 import UIKit
@@ -25,14 +24,14 @@ class ViewController: UIViewController {
 
         containerView.addSubview(overlayView1)
 
-//        imageView2.isUserInteractionEnabled = true
+        //        imageView2.isUserInteractionEnabled = true
 
         _ = driver
     }
 
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-    overlayView1.frame = imageView1.frame
-  }
+        overlayView1.frame = imageView1.frame
+    }
 }
