@@ -4,14 +4,15 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
     let sourceView: T
 
-    var isZooming = false
-    let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
+    public private(set) var isZooming = false
 
-    let targetViewFactory: (T) throws -> UIView
+    private let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 
-    let shouldZoomTransform: (T) throws -> Bool
+    private let targetViewFactory: (T) throws -> UIView
 
-    var currentIntereactingView: UIView?
+    private let shouldZoomTransform: (T) throws -> Bool
+
+    private var currentIntereactingView: UIView?
 
     private lazy var pinchGesture = UIPinchGestureRecognizer(
         target: self,
@@ -238,7 +239,7 @@ public class InteractiveZoomView<T: UIView>: UIView, UIGestureRecognizerDelegate
 
 extension InteractiveZoomView {
 
-    static func clone(from fromImageView: UIImageView) -> UIImageView {
+    public static func clone(from fromImageView: UIImageView) -> UIImageView {
         
         let view = UIImageView()
         view.image = fromImageView.image
@@ -251,7 +252,7 @@ extension InteractiveZoomView {
 
 extension InteractiveZoomView where T : UIImageView {
 
-    static func shouldZoomTransform(sourceView: T) -> Bool {
+    public static func shouldZoomTransform(sourceView: T) -> Bool {
 
         if sourceView.image == nil {
             return false
@@ -259,7 +260,7 @@ extension InteractiveZoomView where T : UIImageView {
         return true
     }
 
-    convenience init(
+    public convenience init(
         sourceView: T
         ) {
         self.init(

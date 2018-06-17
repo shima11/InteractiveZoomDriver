@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 
         containerView.addSubview(overlayView1)
 
-        //        imageView2.isUserInteractionEnabled = true
+        imageView2.isUserInteractionEnabled = true
 
         _ = driver
     }

@@ -24,6 +24,7 @@ let zoomView = UIImageView()
 
 // method1: driver
 let driver = InteractiveZoomDriver(gestureTargetView: zoomView, sourceView: zoomView, targetViewFactory: InteractiveZoomView.clone, shouldZoomTransform: InteractiveZoomView.shouldZoomTransform)
+zoomView.isUserInteractionEnabled = true
 
 // method2: overlay view
 let overlayZoomView = InteractiveZoomView(
