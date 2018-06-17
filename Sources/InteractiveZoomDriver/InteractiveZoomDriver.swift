@@ -13,9 +13,15 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
     var currentIntereactingView: UIView?
 
-    private lazy var pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.pinch(sender:)))
+    private lazy var pinchGesture = UIPinchGestureRecognizer(
+        target: self,
+        action: #selector(self.pinch(sender:))
+    )
 
-    private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.pan(sender:)))
+    private lazy var panGesture = UIPanGestureRecognizer(
+        target: self,
+        action: #selector(self.pan(sender:))
+    )
 
     public init(
         gestureTargetView: UIView,
@@ -131,10 +137,16 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
                 return
             }
 
-            UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState], animations: {
-                targetView.transform = .identity
-                targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
-                self.frontWindow.backgroundColor = .clear
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: [.beginFromCurrentState],
+                animations: {
+                    targetView.transform = .identity
+                    targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
+                    self.frontWindow.backgroundColor = .clear
             }, completion: { _ in
                 self.isZooming = false
                 targetView.removeFromSuperview()
@@ -159,7 +171,10 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
             }
 
             let translation = sender.translation(in: sender.view)
-            targetView.center = CGPoint(x: targetView.center.x + translation.x, y: targetView.center.y + translation.y)
+            targetView.center = CGPoint(
+                x: targetView.center.x + translation.x,
+                y: targetView.center.y + translation.y
+            )
             sender.setTranslation(CGPoint.zero, in: targetView.superview)
 
         default:
@@ -169,13 +184,17 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     }
 
     private func updateBackgroundColor(progress: CGFloat) {
+
         let scale = (progress - 1) / 4
         let alpha = scale > 0.6 ? 0.6 : scale
         frontWindow.backgroundColor = UIColor(white: 0, alpha: alpha)
     }
 
     @objc
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
+        ) -> Bool {
 
         if gestureRecognizer.numberOfTouches == 1 {
             return true
@@ -220,6 +239,7 @@ public class InteractiveZoomView<T: UIView>: UIView, UIGestureRecognizerDelegate
 extension InteractiveZoomView {
 
     static func clone(from fromImageView: UIImageView) -> UIImageView {
+        
         let view = UIImageView()
         view.image = fromImageView.image
         view.clipsToBounds = fromImageView.clipsToBounds
@@ -242,7 +262,11 @@ extension InteractiveZoomView where T : UIImageView {
     convenience init(
         sourceView: T
         ) {
-        self.init(sourceView: sourceView, targetViewFactory: InteractiveZoomView.clone, shouldZoomTransform: InteractiveZoomView.shouldZoomTransform)
+        self.init(
+            sourceView: sourceView,
+            targetViewFactory: InteractiveZoomView.clone,
+            shouldZoomTransform: InteractiveZoomView.shouldZoomTransform
+        )
     }
 }
 
