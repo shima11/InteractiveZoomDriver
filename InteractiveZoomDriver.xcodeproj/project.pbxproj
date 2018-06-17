@@ -27,7 +27,6 @@
 		D4C5136C20D5752B00821ECA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136B20D5752B00821ECA /* ViewController.swift */; };
 		D4C5136E20D5753300821ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136D20D5753300821ECA /* AppDelegate.swift */; };
 		D4C5137120D5774700821ECA /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* InteractiveZoomDriver.swift */; };
-		OBJ_22 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_28 /* InteractiveZoomDriverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* InteractiveZoomDriverTests.swift */; };
 		OBJ_30 /* InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */; };
 		OBJ_37 /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* InteractiveZoomDriver.swift */; };
@@ -61,7 +60,6 @@
 		"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"InteractiveZoomDriver::InteractiveZoomDriverTests::Product" /* InteractiveZoomDriverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = InteractiveZoomDriverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_12 /* InteractiveZoomDriverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriverTests.swift; sourceTree = "<group>"; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* InteractiveZoomDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,7 +132,6 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
 				D4C5135A20D5735B00821ECA /* Demo */,
@@ -237,6 +234,7 @@
 				TargetAttributes = {
 					D4C5135820D5735B00821ECA = {
 						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = 64T4PJ8WCZ;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
@@ -298,7 +296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_22 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +384,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 64T4PJ8WCZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -403,7 +401,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimaApps.Demo;
@@ -450,6 +448,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 64T4PJ8WCZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -461,7 +460,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimaApps.Demo;
@@ -541,7 +540,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -606,7 +605,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

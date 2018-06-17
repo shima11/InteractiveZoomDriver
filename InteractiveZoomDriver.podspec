@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
         This repo is view to zoomable by pinch gesture.
     DESC
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.homepage     = "https://github.com/shima11/InteractiveZoomDriver"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Shima" => "shima.jin@icloud.com" }
