@@ -1,6 +1,10 @@
 # InteractiveZoomDriver
 This repo is view to zoomable by pinch gesture.
 
+## Overview
+
+![](demo.gif)
+
 ## Installation
 
 ### Carthage
@@ -22,11 +26,14 @@ import InteractiveZoomDriver
 
 let zoomView = UIImageView()
 
-// method1: driver
+// case1: driver
+
 let driver = InteractiveZoomDriver(gestureTargetView: zoomView, sourceView: zoomView, targetViewFactory: InteractiveZoomView.clone, shouldZoomTransform: InteractiveZoomView.shouldZoomTransform)
+
 zoomView.isUserInteractionEnabled = true
 
-// method2: overlay view
+// case2: overlay view
+
 let overlayZoomView = InteractiveZoomView(
     sourceView: zoomView
 )
