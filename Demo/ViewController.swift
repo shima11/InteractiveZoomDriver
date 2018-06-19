@@ -22,6 +22,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        containerView.layer.cornerRadius = 8.0
+        containerView.layer.shadowColor = UIColor.darkGray.cgColor
+        containerView.layer.shadowRadius = 16
+        containerView.layer.shadowOpacity = 0.2
+
         containerView.addSubview(overlayView1)
 
         imageView2.isUserInteractionEnabled = true
