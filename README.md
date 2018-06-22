@@ -9,14 +9,18 @@ This repo is view to zoomable by pinch gesture.
 
 ### Carthage
 
+For Installing with Carthage, add it to your `Cartfile`.
+
 ```
 github "shima11/InteractiveZoomDriver"
 ```
 
 ### CocoaPods
 
+For installing with CocoaPods, add it to your `Podfile`.
+
 ```
-pod 'InteractiveZoomDriver', :git => 'https://github.com/shima11/InteractiveZoomDriver.git'
+pod 'InteractiveZoomDriver'
 ```
 
 ## Usage
