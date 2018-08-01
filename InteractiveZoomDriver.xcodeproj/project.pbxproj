@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		"InteractiveZoomDriver::InteractiveZoomDriverPackageTests::ProductTarget" /* InteractiveZoomDriverPackageTests */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_40 /* Build configuration list for PBXAggregateTarget "InteractiveZoomDriverPackageTests" */;
-			buildPhases = (
-			);
-			dependencies = (
-				OBJ_43 /* PBXTargetDependency */,
-			);
-			name = InteractiveZoomDriverPackageTests;
-			productName = InteractiveZoomDriverPackageTests;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		D4C5136120D5735B00821ECA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C5135F20D5735B00821ECA /* Main.storyboard */; };
 		D4C5136320D5735D00821ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C5136220D5735D00821ECA /* Assets.xcassets */; };
@@ -27,27 +13,8 @@
 		D4C5136C20D5752B00821ECA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136B20D5752B00821ECA /* ViewController.swift */; };
 		D4C5136E20D5753300821ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136D20D5753300821ECA /* AppDelegate.swift */; };
 		D4C5137120D5774700821ECA /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* InteractiveZoomDriver.swift */; };
-		OBJ_28 /* InteractiveZoomDriverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* InteractiveZoomDriverTests.swift */; };
-		OBJ_30 /* InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */; };
 		OBJ_37 /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* InteractiveZoomDriver.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D4C5135320D5715E00821ECA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "InteractiveZoomDriver::InteractiveZoomDriver";
-			remoteInfo = InteractiveZoomDriver;
-		};
-		D4C5135420D5715F00821ECA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "InteractiveZoomDriver::InteractiveZoomDriverTests";
-			remoteInfo = InteractiveZoomDriverTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D4C5135920D5735B00821ECA /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,9 +24,8 @@
 		D4C5136720D5735D00821ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C5136B20D5752B00821ECA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D4C5136D20D5753300821ECA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4E035A321114F5B0084422D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"InteractiveZoomDriver::InteractiveZoomDriverTests::Product" /* InteractiveZoomDriverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = InteractiveZoomDriverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_12 /* InteractiveZoomDriverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriverTests.swift; sourceTree = "<group>"; };
 		OBJ_9 /* InteractiveZoomDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,14 +34,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_30 /* InteractiveZoomDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,27 +60,9 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		OBJ_10 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_11 /* InteractiveZoomDriverTests */,
-			);
-			name = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_11 /* InteractiveZoomDriverTests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_12 /* InteractiveZoomDriverTests.swift */,
-			);
-			name = InteractiveZoomDriverTests;
-			path = Tests/InteractiveZoomDriverTests;
-			sourceTree = SOURCE_ROOT;
-		};
 		OBJ_14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"InteractiveZoomDriver::InteractiveZoomDriverTests::Product" /* InteractiveZoomDriverTests.xctest */,
 				"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */,
 				D4C5135920D5735B00821ECA /* Demo.app */,
 			);
@@ -133,8 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_7 /* Sources */,
-				OBJ_10 /* Tests */,
-				D4C5135A20D5735B00821ECA /* Demo */,
 				OBJ_14 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,6 +80,7 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D4C5135A20D5735B00821ECA /* Demo */,
 				OBJ_8 /* InteractiveZoomDriver */,
 			);
 			name = Sources;
@@ -151,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* InteractiveZoomDriver.swift */,
+				D4E035A321114F5B0084422D /* Info.plist */,
 			);
 			name = InteractiveZoomDriver;
 			path = Sources/InteractiveZoomDriver;
@@ -192,37 +132,6 @@
 			productReference = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"InteractiveZoomDriver::InteractiveZoomDriverTests" /* InteractiveZoomDriverTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_24 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriverTests" */;
-			buildPhases = (
-				OBJ_27 /* Sources */,
-				OBJ_29 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_31 /* PBXTargetDependency */,
-			);
-			name = InteractiveZoomDriverTests;
-			productName = InteractiveZoomDriverTests;
-			productReference = "InteractiveZoomDriver::InteractiveZoomDriverTests::Product" /* InteractiveZoomDriverTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		"InteractiveZoomDriver::SwiftPMPackageDescription" /* InteractiveZoomDriverPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_18 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriverPackageDescription" */;
-			buildPhases = (
-				OBJ_21 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = InteractiveZoomDriverPackageDescription;
-			productName = InteractiveZoomDriverPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -241,9 +150,6 @@
 					"InteractiveZoomDriver::InteractiveZoomDriver" = {
 						LastSwiftMigration = 1000;
 					};
-					"InteractiveZoomDriver::InteractiveZoomDriverTests" = {
-						LastSwiftMigration = 1000;
-					};
 				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "InteractiveZoomDriver" */;
@@ -259,10 +165,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"InteractiveZoomDriver::SwiftPMPackageDescription" /* InteractiveZoomDriverPackageDescription */,
-				"InteractiveZoomDriver::InteractiveZoomDriverTests" /* InteractiveZoomDriverTests */,
 				"InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */,
-				"InteractiveZoomDriver::InteractiveZoomDriverPackageTests::ProductTarget" /* InteractiveZoomDriverPackageTests */,
 				D4C5135820D5735B00821ECA /* Demo */,
 			);
 		};
@@ -292,21 +195,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_21 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_27 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_28 /* InteractiveZoomDriverTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		OBJ_36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
@@ -316,19 +204,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		OBJ_31 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */;
-			targetProxy = D4C5135320D5715E00821ECA /* PBXContainerItemProxy */;
-		};
-		OBJ_43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "InteractiveZoomDriver::InteractiveZoomDriverTests" /* InteractiveZoomDriverTests */;
-			targetProxy = D4C5135420D5715F00821ECA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D4C5135F20D5735B00821ECA /* Main.storyboard */ = {
@@ -471,60 +346,6 @@
 			};
 			name = Release;
 		};
-		OBJ_19 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Library/Developer/Toolchains/swift-4.0-RELEASE.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		OBJ_20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Library/Developer/Toolchains/swift-4.0-RELEASE.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		OBJ_25 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = InteractiveZoomDriver.xcodeproj/InteractiveZoomDriverTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = InteractiveZoomDriverTests;
-			};
-			name = Debug;
-		};
-		OBJ_26 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = InteractiveZoomDriver.xcodeproj/InteractiveZoomDriverTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 4.2;
-				TARGET_NAME = InteractiveZoomDriverTests;
-			};
-			name = Release;
-		};
 		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -557,7 +378,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = InteractiveZoomDriver.xcodeproj/InteractiveZoomDriver_Info.plist;
+				INFOPLIST_FILE = Sources/InteractiveZoomDriver/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -579,7 +400,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = InteractiveZoomDriver.xcodeproj/InteractiveZoomDriver_Info.plist;
+				INFOPLIST_FILE = Sources/InteractiveZoomDriver/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -613,18 +434,6 @@
 			};
 			name = Release;
 		};
-		OBJ_41 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		OBJ_42 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -633,15 +442,6 @@
 			buildConfigurations = (
 				D4C5136920D5735D00821ECA /* Debug */,
 				D4C5136A20D5735D00821ECA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		OBJ_18 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriverPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_19 /* Debug */,
-				OBJ_20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -655,29 +455,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_24 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriverTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_25 /* Debug */,
-				OBJ_26 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		OBJ_33 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				OBJ_34 /* Debug */,
 				OBJ_35 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		OBJ_40 /* Build configuration list for PBXAggregateTarget "InteractiveZoomDriverPackageTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_41 /* Debug */,
-				OBJ_42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
