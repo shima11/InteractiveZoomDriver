@@ -42,13 +42,35 @@ Add zoom function to target UIView.
 
 ```
 let driver = InteractiveZoomDriver(
+  gestureTargetView: imageView2,
+  sourceView: imageView2,
+  targetViewFactory: { (fromImageView: UIImageView) -> UIView in
+    let view = UIImageView()
+    view.image = fromImageView.image
+    view.clipsToBounds = fromImageView.clipsToBounds
+    view.contentMode = fromImageView.contentMode
+    return view
+  },
+  shouldZoomTransform: {(sourceView: UIImageView) -> Bool in
+    if sourceView.image == nil {
+      return false
+    }
+    return true
+  }
+)
+```
+This is also no problem.
+`InteractiveZoomView.clone` and `InteractiveZoomView.shouldZoomTransform` is default implementation of protocol extension.
+`InteractiveZoomView` corresponds to `UIImageView` only.
+To support other than `UIImageView`, add an implementation in extension.
+
+```
+let driver = InteractiveZoomDriver(
   gestureTargetView: zoomView, 
   sourceView: zoomView, 
   targetViewFactory: InteractiveZoomView.clone, 
   shouldZoomTransform: InteractiveZoomView.shouldZoomTransform
-  )
-
-view.addSubView(zoomView)
+)
 ```
 
 ### case2: overlay view 

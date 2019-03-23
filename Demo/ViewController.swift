@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import InteractiveZoomDriver
 
 class ViewController: UIViewController {
 
@@ -17,11 +18,36 @@ class ViewController: UIViewController {
         sourceView: self.imageView1
     )
 
-    private lazy var driver = InteractiveZoomDriver(gestureTargetView: imageView2, sourceView: imageView2, targetViewFactory: InteractiveZoomView.clone, shouldZoomTransform: InteractiveZoomView.shouldZoomTransform)
+    private lazy var driver = InteractiveZoomDriver(
+        gestureTargetView: imageView2,
+        sourceView: imageView2,
+        targetViewFactory: { (fromImageView: UIImageView) -> UIView in
+
+            let view = UIImageView()
+            view.image = fromImageView.image
+            view.clipsToBounds = fromImageView.clipsToBounds
+            view.contentMode = fromImageView.contentMode
+            return view
+    },
+        shouldZoomTransform: {(sourceView: UIImageView) -> Bool in
+
+            if sourceView.image == nil {
+                return false
+            }
+            return true
+    }
+    )
+
+    // This is also ok.
+//    private lazy var driver = InteractiveZoomDriver(
+//        gestureTargetView: imageView2,
+//        sourceView: imageView2,
+//        targetViewFactory: InteractiveZoomView.clone,
+//        shouldZoomTransform: InteractiveZoomView.shouldZoomTransform
+//    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         containerView.layer.cornerRadius = 8.0
         containerView.layer.shadowColor = UIColor.darkGray.cgColor
