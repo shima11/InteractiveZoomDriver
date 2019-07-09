@@ -1,12 +1,18 @@
 import UIKit
 
-public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDelegate {
+fileprivate enum Window {
+    static let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
+}
 
+public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDelegate {
+    
     let sourceView: T
 
     public private(set) var isZooming = false
-
-    private let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
+    
+    // TODO: 複数箇所で使うと大量にUIWindowが生成されてしまう
+    // UIApplication.shared.keyWindow
+//    private let frontWindow: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 
     private let targetViewFactory: (T) throws -> UIView
 
@@ -58,14 +64,11 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     @objc private func pinch(sender: UIPinchGestureRecognizer) {
 
         do {
-
             let isZoom = try shouldZoomTransform(sourceView)
             if isZoom == false {
                 return
             }
-        }
-        catch {
-
+        } catch {
             return
         }
 
@@ -73,11 +76,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         case .began:
 
             do {
-
                 currentIntereactingView = try targetViewFactory(sourceView)
-            }
-            catch {
-
+            } catch {
                 print(error)
             }
 
@@ -86,18 +86,17 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
             }
 
             targetView.transform = .identity
-            targetView.frame = sourceView.convert(sourceView.bounds, to: frontWindow)
+            targetView.frame = sourceView.convert(sourceView.bounds, to: Window.frontWindow)
             sourceView.isHidden = true
             targetView.isUserInteractionEnabled = true
-            frontWindow.addSubview(targetView)
-            frontWindow.isHidden = false
+            Window.frontWindow.addSubview(targetView)
+            Window.frontWindow.isHidden = false
 
             let currentScale = targetView.frame.size.width / targetView.bounds.size.width
             let newScale = currentScale * sender.scale
             if newScale > 1 {
                 isZooming = true
             }
-
 
         case .changed:
 
@@ -146,12 +145,12 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
                 options: [.beginFromCurrentState],
                 animations: {
                     targetView.transform = .identity
-                    targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
-                    self.frontWindow.backgroundColor = .clear
+                    targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: Window.frontWindow)
+                    Window.frontWindow.backgroundColor = .clear
             }, completion: { _ in
                 self.isZooming = false
                 targetView.removeFromSuperview()
-                self.frontWindow.isHidden = true
+                Window.frontWindow.isHidden = true
                 self.sourceView.isHidden = false
             })
 
@@ -188,7 +187,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
         let scale = (progress - 1) / 4
         let alpha = scale > 0.6 ? 0.6 : scale
-        frontWindow.backgroundColor = UIColor(white: 0, alpha: alpha)
+        Window.frontWindow.backgroundColor = UIColor(white: 0, alpha: alpha)
     }
 
     @objc
