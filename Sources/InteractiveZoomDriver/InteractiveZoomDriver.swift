@@ -147,7 +147,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
             }, completion: { _ in
                 self.isZooming = false
                 targetView.removeFromSuperview()
-//                self.currentInteractingView = nil
+                self.currentInteractingView = nil
+                self.frontWindow?.isHidden = true
                 self.frontWindow = nil
                 self.sourceView.isHidden = false
             })
