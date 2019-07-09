@@ -14,8 +14,8 @@
 		D4C5136620D5735D00821ECA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C5136420D5735D00821ECA /* LaunchScreen.storyboard */; };
 		D4C5136C20D5752B00821ECA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136B20D5752B00821ECA /* ViewController.swift */; };
 		D4C5136E20D5753300821ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136D20D5753300821ECA /* AppDelegate.swift */; };
-		D4EBBF1522462E9700FB47A3 /* InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */; };
-		D4EBBF1622462E9700FB47A3 /* InteractiveZoomDriver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4EBBF1522462E9700FB47A3 /* InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */; };
+		D4EBBF1622462E9700FB47A3 /* InteractiveZoomDriver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4EBBF19224632A400FB47A3 /* InteractiveZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBF18224632A400FB47A3 /* InteractiveZoomView.swift */; };
 		OBJ_37 /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* InteractiveZoomDriver.swift */; };
 /* End PBXBuildFile section */
@@ -61,7 +61,7 @@
 		DEC65DA70867F3FDEF019E54 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		F16ABF95798FA4BC12D20DA5 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC3DC7DF766728F9E7718AD9 /* Pods_InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_9 /* InteractiveZoomDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,6 @@
 				09B99E64A5065D77DD400E27 /* Pods-InteractiveZoomDriver.debug.xcconfig */,
 				4985329B7B7293413494628B /* Pods-InteractiveZoomDriver.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -123,7 +122,7 @@
 		OBJ_14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */,
+				"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */,
 				D4C5135920D5735B00821ECA /* Demo.app */,
 			);
 			name = Products;
@@ -184,7 +183,7 @@
 			productReference = D4C5135920D5735B00821ECA /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		InteractiveZoomDriver::InteractiveZoomDriver /* InteractiveZoomDriver */ = {
+		"InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_33 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriver" */;
 			buildPhases = (
@@ -198,7 +197,7 @@
 			);
 			name = InteractiveZoomDriver;
 			productName = InteractiveZoomDriver;
-			productReference = InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */;
+			productReference = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -235,7 +235,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				InteractiveZoomDriver::InteractiveZoomDriver /* InteractiveZoomDriver */,
+				"InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */,
 				D4C5135820D5735B00821ECA /* Demo */,
 			);
 		};
@@ -347,7 +347,7 @@
 /* Begin PBXTargetDependency section */
 		D4EBBF1422462E8500FB47A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = InteractiveZoomDriver::InteractiveZoomDriver /* InteractiveZoomDriver */;
+			target = "InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */;
 			targetProxy = D4EBBF1322462E8500FB47A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -432,7 +432,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -491,7 +491,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimaApps.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -567,7 +567,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = InteractiveZoomDriver;
 			};
 			name = Debug;
@@ -592,7 +592,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = InteractiveZoomDriver;
 			};
 			name = Release;
