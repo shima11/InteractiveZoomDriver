@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		179724D011FAC89D2F1E91F9 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16ABF95798FA4BC12D20DA5 /* Pods_Demo.framework */; };
+		1DD0BE9FAD8082E5C4ABF117 /* Pods_InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3DC7DF766728F9E7718AD9 /* Pods_InteractiveZoomDriver.framework */; };
 		D4C5136120D5735B00821ECA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C5135F20D5735B00821ECA /* Main.storyboard */; };
 		D4C5136320D5735D00821ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C5136220D5735D00821ECA /* Assets.xcassets */; };
 		D4C5136620D5735D00821ECA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C5136420D5735D00821ECA /* LaunchScreen.storyboard */; };
 		D4C5136C20D5752B00821ECA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136B20D5752B00821ECA /* ViewController.swift */; };
 		D4C5136E20D5753300821ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5136D20D5753300821ECA /* AppDelegate.swift */; };
-		D4EBBF1522462E9700FB47A3 /* InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */; };
-		D4EBBF1622462E9700FB47A3 /* InteractiveZoomDriver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4EBBF1522462E9700FB47A3 /* InteractiveZoomDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */; };
+		D4EBBF1622462E9700FB47A3 /* InteractiveZoomDriver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4EBBF19224632A400FB47A3 /* InteractiveZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EBBF18224632A400FB47A3 /* InteractiveZoomView.swift */; };
 		OBJ_37 /* InteractiveZoomDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* InteractiveZoomDriver.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +45,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		09B99E64A5065D77DD400E27 /* Pods-InteractiveZoomDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InteractiveZoomDriver.debug.xcconfig"; path = "Target Support Files/Pods-InteractiveZoomDriver/Pods-InteractiveZoomDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		4985329B7B7293413494628B /* Pods-InteractiveZoomDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InteractiveZoomDriver.release.xcconfig"; path = "Target Support Files/Pods-InteractiveZoomDriver/Pods-InteractiveZoomDriver.release.xcconfig"; sourceTree = "<group>"; };
+		88B08AA4E728B13EA2DEF975 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		D4C5135920D5735B00821ECA /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C5136020D5735B00821ECA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4C5136220D5735D00821ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,7 +58,10 @@
 		D4E035A321114F5B0084422D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4EBBF18224632A400FB47A3 /* InteractiveZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomView.swift; sourceTree = "<group>"; };
 		D4EBBF1A2246362300FB47A3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEC65DA70867F3FDEF019E54 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		F16ABF95798FA4BC12D20DA5 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC3DC7DF766728F9E7718AD9 /* Pods_InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InteractiveZoomDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_9 /* InteractiveZoomDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveZoomDriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4EBBF1522462E9700FB47A3 /* InteractiveZoomDriver.framework in Frameworks */,
+				179724D011FAC89D2F1E91F9 /* Pods_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +79,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				1DD0BE9FAD8082E5C4ABF117 /* Pods_InteractiveZoomDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4AAD71DEFC32031ABFA1BE3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DEC65DA70867F3FDEF019E54 /* Pods-Demo.debug.xcconfig */,
+				88B08AA4E728B13EA2DEF975 /* Pods-Demo.release.xcconfig */,
+				09B99E64A5065D77DD400E27 /* Pods-InteractiveZoomDriver.debug.xcconfig */,
+				4985329B7B7293413494628B /* Pods-InteractiveZoomDriver.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		942C34B05FE52CEEDBE5D4B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F16ABF95798FA4BC12D20DA5 /* Pods_Demo.framework */,
+				FC3DC7DF766728F9E7718AD9 /* Pods_InteractiveZoomDriver.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D4C5135A20D5735B00821ECA /* Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +123,7 @@
 		OBJ_14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */,
+				InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */,
 				D4C5135920D5735B00821ECA /* Demo.app */,
 			);
 			name = Products;
@@ -104,6 +135,8 @@
 				D4EBBF1A2246362300FB47A3 /* README.md */,
 				OBJ_7 /* Sources */,
 				OBJ_14 /* Products */,
+				4AAD71DEFC32031ABFA1BE3F /* Pods */,
+				942C34B05FE52CEEDBE5D4B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,10 +167,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4C5136820D5735D00821ECA /* Build configuration list for PBXNativeTarget "Demo" */;
 			buildPhases = (
+				CE67007EE2BC261B62BF3ACC /* [CP] Check Pods Manifest.lock */,
 				D4C5135520D5735B00821ECA /* Sources */,
 				D4C5135620D5735B00821ECA /* Frameworks */,
 				D4C5135720D5735B00821ECA /* Resources */,
 				D4EBBF1722462E9800FB47A3 /* Embed Frameworks */,
+				4E30DD3B4D7CCEF539E4739A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,10 +184,11 @@
 			productReference = D4C5135920D5735B00821ECA /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		"InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */ = {
+		InteractiveZoomDriver::InteractiveZoomDriver /* InteractiveZoomDriver */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_33 /* Build configuration list for PBXNativeTarget "InteractiveZoomDriver" */;
 			buildPhases = (
+				87570C3EEF26595E57509C6C /* [CP] Check Pods Manifest.lock */,
 				OBJ_36 /* Sources */,
 				OBJ_38 /* Frameworks */,
 			);
@@ -162,7 +198,7 @@
 			);
 			name = InteractiveZoomDriver;
 			productName = InteractiveZoomDriver;
-			productReference = "InteractiveZoomDriver::InteractiveZoomDriver::Product" /* InteractiveZoomDriver.framework */;
+			productReference = InteractiveZoomDriver::InteractiveZoomDriver::Product /* InteractiveZoomDriver.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +235,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */,
+				InteractiveZoomDriver::InteractiveZoomDriver /* InteractiveZoomDriver */,
 				D4C5135820D5735B00821ECA /* Demo */,
 			);
 		};
@@ -217,6 +253,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E30DD3B4D7CCEF539E4739A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer/iOS/RevealServer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87570C3EEF26595E57509C6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InteractiveZoomDriver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE67007EE2BC261B62BF3ACC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4C5135520D5735B00821ECA /* Sources */ = {
@@ -242,7 +347,7 @@
 /* Begin PBXTargetDependency section */
 		D4EBBF1422462E8500FB47A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "InteractiveZoomDriver::InteractiveZoomDriver" /* InteractiveZoomDriver */;
+			target = InteractiveZoomDriver::InteractiveZoomDriver /* InteractiveZoomDriver */;
 			targetProxy = D4EBBF1322462E8500FB47A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -269,6 +374,7 @@
 /* Begin XCBuildConfiguration section */
 		D4C5136920D5735D00821ECA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEC65DA70867F3FDEF019E54 /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -333,6 +439,7 @@
 		};
 		D4C5136A20D5735D00821ECA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88B08AA4E728B13EA2DEF975 /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -442,6 +549,7 @@
 		};
 		OBJ_34 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09B99E64A5065D77DD400E27 /* Pods-InteractiveZoomDriver.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 64T4PJ8WCZ;
@@ -466,6 +574,7 @@
 		};
 		OBJ_35 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4985329B7B7293413494628B /* Pods-InteractiveZoomDriver.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 64T4PJ8WCZ;
