@@ -12,7 +12,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
     private let shouldZoomTransform: (T) throws -> Bool
 
-    private var currentIntereactingView: UIView?
+    private var currentInteractingView: UIView?
 
     private lazy var pinchGesture = UIPinchGestureRecognizer(
         target: self,
@@ -56,28 +56,27 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     }
 
     @objc private func pinch(sender: UIPinchGestureRecognizer) {
-
+        
         do {
             let isZoom = try shouldZoomTransform(sourceView)
-            if isZoom == false {
-                return
-            }
+            guard isZoom else { return }
         } catch {
-            return
+            fatalError(error.localizedDescription)
         }
 
         switch sender.state {
         case .began:
 
             do {
-                currentIntereactingView = try targetViewFactory(sourceView)
+                currentInteractingView = try targetViewFactory(sourceView)
             } catch {
-                print(error)
+                fatalError(error.localizedDescription)
             }
 
-            guard let targetView = currentIntereactingView else {
+            guard let targetView = currentInteractingView else {
                 return
             }
+            
             if frontWindow == nil {
                 frontWindow = UIWindow(frame: UIScreen.main.bounds)
             }
@@ -97,7 +96,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
         case .changed:
 
-            guard let targetView = currentIntereactingView else {
+            guard let targetView = currentInteractingView else {
                 return
             }
 
@@ -118,7 +117,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
                     y: sender.location(in: targetView).y - targetView.bounds.midY
                 )
 
-                targetView.transform = targetView.transform
+                targetView.transform = targetView
+                    .transform
                     .translatedBy(x: pinchCenter.x, y: pinchCenter.y)
                     .scaledBy(x: sender.scale, y: sender.scale)
                     .translatedBy(x: -pinchCenter.x, y: -pinchCenter.y)
@@ -130,7 +130,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
 
         case .cancelled, .failed, .ended:
 
-            guard let targetView = currentIntereactingView else {
+            guard let targetView = currentInteractingView else {
                 return
             }
 
@@ -147,6 +147,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
             }, completion: { _ in
                 self.isZooming = false
                 targetView.removeFromSuperview()
+//                self.currentInteractingView = nil
                 self.frontWindow = nil
                 self.sourceView.isHidden = false
             })
@@ -163,7 +164,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         switch sender.state {
         case .changed:
 
-            guard let targetView = currentIntereactingView else {
+            guard let targetView = currentInteractingView else {
                 return
             }
 
@@ -181,7 +182,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     }
 
     private func updateBackgroundColor(progress: CGFloat) {
-
+        
         let scale = (progress - 1) / 4
         let alpha = scale > 0.6 ? 0.6 : scale
         frontWindow?.backgroundColor = UIColor(white: 0, alpha: alpha)
