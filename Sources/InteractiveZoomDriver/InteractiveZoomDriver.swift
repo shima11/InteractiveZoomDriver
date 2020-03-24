@@ -49,12 +49,6 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         fatalError("init(coder:) has not been implemented")
     }
 
-    deinit {
-
-        pinchGesture.view?.removeGestureRecognizer(pinchGesture)
-        panGesture.view?.removeGestureRecognizer(panGesture)
-    }
-
     @objc private func pinch(sender: UIPinchGestureRecognizer) {
         
         do {
