@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pqs-Rx-xhS">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pqs-Rx-xhS">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5N-5V-car">
-                                <rect key="frame" x="32" y="52" width="311" height="534"/>
+                                <rect key="frame" x="32" y="32" width="311" height="554"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample1" translatesAutoresizingMaskIntoConstraints="NO" id="Qeu-sJ-2ug">
                                         <rect key="frame" x="32" y="32" width="247" height="200"/>
@@ -46,7 +44,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample2" translatesAutoresizingMaskIntoConstraints="NO" id="vTv-De-x0d">
-                                        <rect key="frame" x="32" y="302" width="247" height="200"/>
+                                        <rect key="frame" x="32" y="322" width="247" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="M4O-uK-V3e"/>
                                         </constraints>
@@ -88,22 +86,22 @@
         <!--Description-->
         <scene sceneID="2MB-kK-Vad">
             <objects>
-                <viewController id="F8N-Om-Iyw" sceneMemberID="viewController">
+                <viewController id="F8N-Om-Iyw" customClass="SecondViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o66-qX-hYO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5aL-dt-Ra8">
-                                <rect key="frame" x="44.5" y="305.5" width="286.5" height="56.5"/>
+                                <rect key="frame" x="25.5" y="303" width="324" height="61.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InteractiveZoomDriver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypT-in-yUW">
-                                        <rect key="frame" x="0.0" y="0.0" width="286.5" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1PX-Sc-jmh">
-                                        <rect key="frame" x="0.0" y="36" width="286.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="41" width="324" height="20.5"/>
                                         <string key="text">UIView to zoomable by pinch gesture
 </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -112,11 +110,20 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tC-Id-fX8">
+                                <rect key="frame" x="166" y="564" width="43" height="30"/>
+                                <state key="normal" title="Modal"/>
+                                <connections>
+                                    <action selector="didTapModalButton:" destination="F8N-Om-Iyw" eventType="touchUpInside" id="fVl-lR-tJ7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="4tC-Id-fX8" firstAttribute="centerX" secondItem="o66-qX-hYO" secondAttribute="centerX" id="2bl-3Q-Iso"/>
                             <constraint firstItem="5aL-dt-Ra8" firstAttribute="centerY" secondItem="o66-qX-hYO" secondAttribute="centerY" id="Duh-AM-sE4"/>
                             <constraint firstItem="5aL-dt-Ra8" firstAttribute="centerX" secondItem="o66-qX-hYO" secondAttribute="centerX" id="WIR-KR-uOB"/>
+                            <constraint firstItem="ZLe-8E-tyl" firstAttribute="bottom" secondItem="4tC-Id-fX8" secondAttribute="bottom" constant="24" id="aCW-i5-260"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZLe-8E-tyl"/>
                     </view>

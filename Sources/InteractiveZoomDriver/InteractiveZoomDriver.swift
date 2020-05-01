@@ -43,6 +43,10 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         gestureTargetView.addGestureRecognizer(pinchGesture)
         gestureTargetView.addGestureRecognizer(panGesture)
     }
+    
+    deinit {
+        print("deinit: InteractiveZoomDriver")
+    }
 
     @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {

@@ -66,4 +66,48 @@ class ViewController: UIViewController {
 
         overlayView1.frame = imageView1.frame
     }
+        
+}
+
+class SecondViewController: UIViewController {
+
+    @IBAction func didTapModalButton(_ sender: Any) {
+        
+        let controller = ModalViewController()
+        present(controller, animated: true, completion: nil)
+    }
+}
+
+class ModalViewController: UIViewController {
+
+    private class TargetView: UIView {
+        deinit {
+            print("deinit: TargetView")
+        }
+    }
+        
+    private let targetView = TargetView()
+    
+    private lazy var driver = InteractiveZoomDriver(
+        gestureTargetView: targetView,
+        sourceView: targetView,
+        targetViewFactory: { (fromImageView: TargetView) -> UIView in
+            return UIView()
+    },
+        shouldZoomTransform: {(sourceView: TargetView) -> Bool in
+            return true
+    })
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+         
+        _ = driver
+    }
+        
+    deinit {
+        print("deinit: ModalViewController")
+    }
+    
 }
