@@ -45,7 +45,9 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
   }
   
   deinit {
+    #if DEBUG
     print("deinit: InteractiveZoomDriver")
+    #endif
   }
   
   @available(*, unavailable)
@@ -81,11 +83,12 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       
       targetView.transform = .identity
       targetView.frame = sourceView.convert(sourceView.bounds, to: frontWindow)
-      sourceView.isHidden = true
       targetView.isUserInteractionEnabled = true
       frontWindow?.addSubview(targetView)
       frontWindow?.isHidden = false
       
+      sourceView.isHidden = true
+
       let currentScale = targetView.frame.size.width / targetView.bounds.size.width
       let newScale = currentScale * sender.scale
       if newScale > 1 {
@@ -137,18 +140,20 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         delay: 0,
         usingSpringWithDamping: 1,
         initialSpringVelocity: 0,
-        options: [.beginFromCurrentState],
+        options: [.beginFromCurrentState, .allowUserInteraction],
         animations: {
           targetView.transform = .identity
           targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
           self.frontWindow?.backgroundColor = .clear
       }, completion: { _ in
         self.isZooming = false
-        targetView.removeFromSuperview()
-        self.currentInteractingView = nil
-        self.frontWindow?.isHidden = true
-        self.frontWindow = nil
         self.sourceView.isHidden = false
+        DispatchQueue.main.async {
+          targetView.removeFromSuperview()
+          self.currentInteractingView = nil
+          self.frontWindow?.isHidden = true
+          self.frontWindow = nil
+        }
       })
       
     default:
@@ -183,8 +188,11 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
   private func updateBackgroundColor(progress: CGFloat) {
     
     let scale = (progress - 1) / 4
-    let alpha = scale > 0.6 ? 0.6 : scale
-    frontWindow?.backgroundColor = UIColor(white: 0, alpha: alpha)
+    let alpha = max(0.6, scale)
+    
+    UIView.animate(withDuration: 0.1, animations: {
+      self.frontWindow?.backgroundColor = UIColor(white: 0, alpha: alpha)
+    })
   }
   
   @objc
