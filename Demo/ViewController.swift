@@ -92,7 +92,9 @@ class ModalViewController: UIViewController {
     gestureTargetView: targetView,
     sourceView: targetView,
     targetViewFactory: { (fromImageView: TargetView) -> UIView in
-      return UIView()
+      let view = UIView()
+      view.backgroundColor = .lightGray
+      return view
   },
     shouldZoomTransform: {(sourceView: TargetView) -> Bool in
       return true
@@ -104,6 +106,22 @@ class ModalViewController: UIViewController {
     view.backgroundColor = .white
     
     _ = driver
+    
+    targetView.backgroundColor = .darkGray
+    targetView.frame = .init(x: 100, y: 100, width: 200, height: 200)
+    view.addSubview(targetView)
+    
+    let button = UIButton()
+    button.frame = .init(x: (view.bounds.width - 80) / 2, y: view.bounds.height - 120, width: 80, height: 40)
+    button.setTitle("dismiss", for: .normal)
+    button.setTitleColor(.darkText, for: .normal)
+    button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+    view.addSubview(button)
+  }
+  
+  @objc func didTap() {
+    
+    dismiss(animated: true, completion: nil)
   }
   
   deinit {
