@@ -216,7 +216,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					"InteractiveZoomDriver::InteractiveZoomDriver" = {
-						DevelopmentTeam = 64T4PJ8WCZ;
+						DevelopmentTeam = 9K8556F7GG;
 						LastSwiftMigration = 1000;
 					};
 				};
@@ -552,7 +552,7 @@
 			baseConfigurationReference = 09B99E64A5065D77DD400E27 /* Pods-InteractiveZoomDriver.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 64T4PJ8WCZ;
+				DEVELOPMENT_TEAM = 9K8556F7GG;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -577,7 +577,8 @@
 			baseConfigurationReference = 4985329B7B7293413494628B /* Pods-InteractiveZoomDriver.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 64T4PJ8WCZ;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = 9K8556F7GG;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

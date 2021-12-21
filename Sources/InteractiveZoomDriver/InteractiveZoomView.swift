@@ -67,5 +67,6 @@ extension InteractiveZoomView where T : UIImageView {
       shouldZoomTransform: InteractiveZoomView.shouldZoomTransform
     )
   }
+
 }
 

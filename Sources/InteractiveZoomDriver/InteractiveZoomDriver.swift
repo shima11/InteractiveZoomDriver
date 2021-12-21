@@ -34,12 +34,12 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     self.sourceView = sourceView
     self.targetViewFactory = targetViewFactory
     self.shouldZoomTransform = shouldZoomTransform
-    
+
     super.init()
     
     pinchGesture.delegate = self
     panGesture.delegate = self
-    
+
     gestureTargetView.addGestureRecognizer(pinchGesture)
     gestureTargetView.addGestureRecognizer(panGesture)
   }
@@ -72,7 +72,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       } catch {
         fatalError(error.localizedDescription)
       }
-      
+
       guard let targetView = currentInteractingView else {
         return
       }
@@ -86,8 +86,11 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       targetView.isUserInteractionEnabled = true
       frontWindow?.addSubview(targetView)
       frontWindow?.isHidden = false
-      
-      sourceView.isHidden = true
+
+      // NOTE: For reduce flicker
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+        self.sourceView.isHidden = true
+      }
 
       let currentScale = targetView.frame.size.width / targetView.bounds.size.width
       let newScale = currentScale * sender.scale
@@ -134,7 +137,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       guard let targetView = currentInteractingView else {
         return
       }
-      
+
       UIView.animate(
         withDuration: 0.25,
         delay: 0,
@@ -148,7 +151,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       }, completion: { _ in
         self.isZooming = false
         self.sourceView.isHidden = false
-        DispatchQueue.main.async {
+        // NOTE: For reduce flicker
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
           targetView.removeFromSuperview()
           self.currentInteractingView = nil
           self.frontWindow?.isHidden = true
@@ -190,7 +194,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     let scale = (progress - 1) / 4
     let alpha = max(0.6, scale)
     
-    UIView.animate(withDuration: 0.1, animations: {
+    UIView.animate(withDuration: 0.2, animations: {
       self.frontWindow?.backgroundColor = UIColor(white: 0, alpha: alpha)
     })
   }
