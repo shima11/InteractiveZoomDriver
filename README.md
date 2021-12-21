@@ -32,7 +32,7 @@ let zoomView = UIImageView() // UIView or SubClass of UIView
 zoomView.isUserInteractionEnabled = true
 ```
 
-### case1: driver
+### Case1: driver
 Add zoom function to target UIView.
 
 `gestureTargetView`: added tap and pan gesture.  
@@ -73,7 +73,7 @@ let driver = InteractiveZoomDriver(
 )
 ```
 
-### case2: overlay view 
+### Case2: overlay view 
 
 InteractiveZoomView is able to only UIImageView now.  
 If you want to use custom UIView, you need to create extension of InteractiveZoomView with reference to InteractiveZoomView.
