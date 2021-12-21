@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "InteractiveZoomDriver"
-  s.version      = "1.2.1"
+  s.version      = "1.2.3"
   s.summary      = "UIView to zoomable by pinch gesture."
   s.swift_versions = ['4.0', '4.2', '5.0']
 
