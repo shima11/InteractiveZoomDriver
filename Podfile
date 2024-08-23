@@ -7,6 +7,8 @@ target 'Demo' do
 
   # Pods for Demo
 
+  pod "Reveal-SDK"
+
 end
 
 target 'InteractiveZoomDriver' do
@@ -14,7 +16,5 @@ target 'InteractiveZoomDriver' do
   use_frameworks!
 
   # Pods for InteractiveZoomDriver
-
-  pod "Reveal-SDK"
 
 end

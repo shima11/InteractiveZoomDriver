@@ -54,7 +54,9 @@ class ViewController: UIViewController {
     containerView.addSubview(overlayView1)
     
     imageView2.isUserInteractionEnabled = true
-    
+    imageView2.layer.cornerRadius = 24
+    imageView2.layer.masksToBounds = true
+
     _ = driver
   }
   
