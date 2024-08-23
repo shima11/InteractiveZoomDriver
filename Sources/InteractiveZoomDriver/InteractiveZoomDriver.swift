@@ -14,6 +14,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
   
   private var currentInteractingView: UIView?
   
+  private var currentCornerRadius: CGFloat = .zero
+
   private lazy var pinchGesture = UIPinchGestureRecognizer(
     target: self,
     action: #selector(self.pinch(sender:))
@@ -23,7 +25,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     target: self,
     action: #selector(self.pan(sender:))
   )
-  
+
   public init(
     gestureTargetView: UIView,
     sourceView: T,
@@ -54,7 +56,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
   public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   @objc private func pinch(sender: UIPinchGestureRecognizer) {
     
     do {
@@ -63,7 +65,7 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
     } catch {
       fatalError(error.localizedDescription)
     }
-    
+
     switch sender.state {
     case .began:
       
@@ -97,7 +99,9 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       if newScale > 1 {
         isZooming = true
       }
-      
+
+      currentCornerRadius = targetView.layer.cornerRadius
+
     case .changed:
       
       guard let targetView = currentInteractingView else {
@@ -105,29 +109,32 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       }
       
       assert(targetView.transform.a == targetView.transform.d)
-      
+
       let currentScale = targetView.transform.a
       var newScale = currentScale * sender.scale
-      
+
       if newScale < 1 {
         newScale = 1
         let transform = CGAffineTransform(scaleX: newScale, y: newScale)
         targetView.transform = transform
       }
       else {
-        
+
         let pinchCenter = CGPoint(
           x: sender.location(in: targetView).x - targetView.bounds.midX,
           y: sender.location(in: targetView).y - targetView.bounds.midY
         )
-        
+
         targetView.transform = targetView
           .transform
           .translatedBy(x: pinchCenter.x, y: pinchCenter.y)
           .scaledBy(x: sender.scale, y: sender.scale)
           .translatedBy(x: -pinchCenter.x, y: -pinchCenter.y)
-        
+
       }
+
+      targetView.layer.cornerRadius = max(0, currentCornerRadius * (1 - (newScale - 1)*20))
+
       sender.scale = 1
       
       updateBackgroundColor(progress: newScale)
@@ -147,10 +154,12 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
         animations: {
           targetView.transform = .identity
           targetView.frame = self.sourceView.convert(self.sourceView.bounds, to: self.frontWindow)
+          targetView.layer.cornerRadius = self.currentCornerRadius
           self.frontWindow?.backgroundColor = .clear
       }, completion: { _ in
         self.isZooming = false
         self.sourceView.isHidden = false
+        self.currentCornerRadius = 0
         // NOTE: For reduce flicker
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
           targetView.removeFromSuperview()

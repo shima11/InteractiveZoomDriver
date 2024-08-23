@@ -26,6 +26,10 @@ class ViewController: UIViewController {
       view.image = fromImageView.image
       view.clipsToBounds = fromImageView.clipsToBounds
       view.contentMode = fromImageView.contentMode
+      view.layer.cornerRadius = fromImageView.layer.cornerRadius
+      if #available(iOS 11.0, *) {
+        view.layer.maskedCorners = fromImageView.layer.maskedCorners
+      }
       return view
     },
     shouldZoomTransform: { sourceView -> Bool in
@@ -52,9 +56,9 @@ class ViewController: UIViewController {
     containerView.layer.shadowOpacity = 0.2
     
     containerView.addSubview(overlayView1)
-    
+
     imageView2.isUserInteractionEnabled = true
-    imageView2.layer.cornerRadius = 24
+    imageView2.layer.cornerRadius = 12
     imageView2.layer.masksToBounds = true
 
     _ = driver

@@ -45,6 +45,10 @@ extension InteractiveZoomView {
     view.image = fromImageView.image
     view.clipsToBounds = fromImageView.clipsToBounds
     view.contentMode = fromImageView.contentMode
+    view.layer.cornerRadius = fromImageView.layer.cornerRadius
+    if #available(iOS 11.0, *) {
+      view.layer.maskedCorners = fromImageView.layer.maskedCorners
+    }
     return view
   }
   
