@@ -7,9 +7,19 @@ This repo is view to zoomable by pinch gesture.
 
 ## Installation
 
+### Swift Package Manager
+
+For installing with SPM, add it to your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/shima11/InteractiveZoomDriver.git", from: "1.2.5"))
+]
+```
+
 ### Carthage
 
-For Installing with Carthage, add it to your `Cartfile`.
+For installing with Carthage, add it to your `Cartfile`.
 
 ```
 github "shima11/InteractiveZoomDriver"
