@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
 
   s.name         = "InteractiveZoomDriver"
-  s.version      = "1.2.3"
+  s.version      = "1.2.5"
   s.summary      = "UIView to zoomable by pinch gesture."
-  s.swift_versions = ['4.0', '4.2', '5.0']
+  s.swift_versions = ['5.0', '5.5']
 
   s.description  = <<-DESC
         This repo is view to zoomable by pinch gesture.
     DESC
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '13.0'
   s.homepage     = "https://github.com/shima11/InteractiveZoomDriver"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Shima" => "shima.jin@icloud.com" }

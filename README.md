@@ -5,6 +5,11 @@ This repo is view to zoomable by pinch gesture.
 
 ![](demo.gif)
 
+## Requirements
+
+- iOS 13.0+
+- Swift 5.5+
+
 ## Installation
 
 ### Swift Package Manager
@@ -13,7 +18,7 @@ For installing with SPM, add it to your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/shima11/InteractiveZoomDriver.git", from: "1.2.5"))
+    .package(url: "https://github.com/shima11/InteractiveZoomDriver.git", from: "1.2.6"))
 ]
 ```
 
@@ -93,4 +98,58 @@ let overlayZoomView = InteractiveZoomView(
     sourceView: zoomView
 )
 view.addSubView(overlayZoomView)
+```
+
+### Case3: SwiftUI support
+
+Starting with iOS 13, you can use InteractiveZoomSwiftUIView to add zoom functionality to your SwiftUI views.
+
+```swift
+import SwiftUI
+import InteractiveZoomDriver
+
+struct ContentView: View {
+    // Store UIImageView as a member variable to prevent recreation when body is reevaluated
+    private let imageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "sample"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    var body: some View {
+        InteractiveZoomSwiftUIView(sourceView: imageView)
+            .frame(width: 300, height: 300)
+    }
+}
+```
+
+For custom UIView support, you can provide the targetViewFactory and shouldZoomTransform parameters:
+
+```swift
+struct CustomContentView: View {
+    // Store custom UIView as a member variable
+    private let customView: CustomUIView = {
+        let view = CustomUIView()
+        // Configure the view
+        return view
+    }()
+    
+    var body: some View {
+        InteractiveZoomSwiftUIView(
+            sourceView: customView,
+            targetViewFactory: { sourceView in
+                // Create a clone of the source view
+                let clonedView = CustomUIView()
+                // Configure the cloned view
+                return clonedView
+            },
+            shouldZoomTransform: { sourceView in
+                // Determine if the view should be zoomable
+                return true
+            }
+        )
+        .frame(width: 300, height: 300)
+    }
+}
 ```
