@@ -1,6 +1,0 @@
-framework module Pods_InteractiveZoomDriver {
-  umbrella header "Pods-InteractiveZoomDriver-umbrella.h"
-
-  export *
-  module * { export * }
-}

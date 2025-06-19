@@ -28,7 +28,7 @@ public struct InteractiveZoomSwiftUIView<T: UIView>: UIViewRepresentable {
       shouldZoomTransform: shouldZoomTransform
     )
     interactiveZoomView.translatesAutoresizingMaskIntoConstraints = false
-    
+
     sourceView.translatesAutoresizingMaskIntoConstraints = false
 
     containerView.addSubview(sourceView)
@@ -39,13 +39,13 @@ public struct InteractiveZoomSwiftUIView<T: UIView>: UIViewRepresentable {
       sourceView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
       sourceView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
       sourceView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-      
+
       interactiveZoomView.topAnchor.constraint(equalTo: containerView.topAnchor),
       interactiveZoomView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
       interactiveZoomView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
       interactiveZoomView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
     ])
-    
+
     return containerView
   }
 
@@ -70,7 +70,7 @@ extension InteractiveZoomSwiftUIView where T: UIImageView {
 struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
 
   private static let imageView: UIImageView = {
-    let image = UIImage(named: "sample1", in: .main, compatibleWith: nil)!
+    let image = UIImage(systemName: "person")!
     let imageView = UIImageView(image: image)
     imageView.contentMode = .scaleAspectFit
     imageView.clipsToBounds = true
