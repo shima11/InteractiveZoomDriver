@@ -9,15 +9,15 @@ import UIKit
 import InteractiveZoomDriver
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet weak var imageView1: UIImageView!
   @IBOutlet weak var imageView2: UIImageView!
   @IBOutlet weak var containerView: UIView!
-  
+
   private lazy var overlayView1 = InteractiveZoomView(
     sourceView: self.imageView1
   )
-  
+
   private lazy var driver = InteractiveZoomDriver(
     gestureTargetView: imageView2,
     sourceView: imageView2,
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
       }
       return true
     })
-  
+
   // This is also ok.
   //    private lazy var driver = InteractiveZoomDriver(
   //        gestureTargetView: imageView2,
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
   //        targetViewFactory: InteractiveZoomView.clone,
   //        shouldZoomTransform: InteractiveZoomView.shouldZoomTransform
   //    )
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     containerView.layer.shadowColor = UIColor.darkGray.cgColor
     containerView.layer.shadowRadius = 16
     containerView.layer.shadowOpacity = 0.2
-    
+
     containerView.addSubview(overlayView1)
 
     imageView2.isUserInteractionEnabled = true
@@ -63,34 +63,34 @@ class ViewController: UIViewController {
 
     _ = driver
   }
-  
+
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    
+
     overlayView1.frame = imageView1.frame
   }
-  
+
 }
 
 class SecondViewController: UIViewController {
-  
+
   @IBAction func didTapModalButton(_ sender: Any) {
-    
+
     let controller = ModalViewController()
     present(controller, animated: true, completion: nil)
   }
 }
 
 class ModalViewController: UIViewController {
-  
+
   private class TargetView: UIView {
     deinit {
       print("deinit: TargetView")
     }
   }
-  
+
   private let targetView = TargetView()
-  
+
   private lazy var driver = InteractiveZoomDriver(
     gestureTargetView: targetView,
     sourceView: targetView,
@@ -102,18 +102,18 @@ class ModalViewController: UIViewController {
     shouldZoomTransform: {(sourceView: TargetView) -> Bool in
       return true
   })
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     view.backgroundColor = .white
-    
+
     _ = driver
-    
+
     targetView.backgroundColor = .darkGray
     targetView.frame = .init(x: 100, y: 100, width: 200, height: 200)
     view.addSubview(targetView)
-    
+
     let button = UIButton()
     button.frame = .init(x: (view.bounds.width - 80) / 2, y: view.bounds.height - 120, width: 80, height: 40)
     button.setTitle("dismiss", for: .normal)
@@ -121,15 +121,62 @@ class ModalViewController: UIViewController {
     button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
     view.addSubview(button)
   }
-  
+
   @objc func didTap() {
-    
+
     dismiss(animated: true, completion: nil)
   }
-  
+
   deinit {
     print("deinit: ModalViewController")
   }
-  
+
 }
 
+
+import SwiftUI
+
+struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
+
+  private static let imageView: UIImageView = {
+    let image = UIImage(named: "sample1")!
+    let imageView = UIImageView(image: image)
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
+    imageView.backgroundColor = .white
+    imageView.layer.cornerRadius = 24.0
+    return imageView
+  }()
+
+  static var previews: some View {
+    TabView {
+      if #available(iOS 16.0, *) {
+        NavigationStack {
+
+          ScrollView {
+            VStack(spacing: 20) {
+              Text("InteractiveZoomSwiftUIView")
+                .font(.headline)
+
+              InteractiveZoomSwiftUIView(sourceView: imageView)
+                .clipShape(RoundedRectangle(cornerRadius: 24))
+                .frame(width: 300, height: 300)
+                .border(Color.gray)
+            }
+            .padding()
+          }
+          .navigationTitle(Text("Title"))
+        }
+        .tabItem {
+          Text("Tab1")
+        }
+      }
+
+      Text("Text")
+        .tabItem {
+          Text("Tab2")
+        }
+
+    }
+  }
+}

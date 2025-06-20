@@ -1,7 +1,6 @@
 import SwiftUI
 import UIKit
 
-@available(iOS 13.0, *)
 public struct InteractiveZoomSwiftUIView<T: UIView>: UIViewRepresentable {
 
   private let sourceView: T
@@ -54,7 +53,6 @@ public struct InteractiveZoomSwiftUIView<T: UIView>: UIViewRepresentable {
   }
 }
 
-@available(iOS 13.0, *)
 extension InteractiveZoomSwiftUIView where T: UIImageView {
 
   public init(sourceView: T) {
@@ -66,7 +64,6 @@ extension InteractiveZoomSwiftUIView where T: UIImageView {
   }
 }
 
-@available(iOS 13.0, *)
 struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
 
   private static let imageView: UIImageView = {
