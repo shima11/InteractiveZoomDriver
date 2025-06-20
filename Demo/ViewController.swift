@@ -138,15 +138,7 @@ import SwiftUI
 
 struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
 
-  private static let imageView: UIImageView = {
-    let image = UIImage(named: "sample1")!
-    let imageView = UIImageView(image: image)
-    imageView.contentMode = .scaleAspectFill
-    imageView.clipsToBounds = true
-    imageView.backgroundColor = .white
-    imageView.layer.cornerRadius = 24.0
-    return imageView
-  }()
+  static let image = UIImage(named: "sample1")!
 
   static var previews: some View {
     TabView {
@@ -158,8 +150,7 @@ struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
               Text("InteractiveZoomSwiftUIView")
                 .font(.headline)
 
-              InteractiveZoomSwiftUIView(sourceView: imageView)
-                .clipShape(RoundedRectangle(cornerRadius: 24))
+              InteractiveZoomSwiftUIView(image: image, cornerRadius: 24)
                 .frame(width: 300, height: 300)
                 .border(Color.gray)
             }

@@ -1,44 +1,44 @@
 import SwiftUI
 import UIKit
 
-public struct InteractiveZoomSwiftUIView<T: UIView>: UIViewRepresentable {
+public struct InteractiveZoomSwiftUIView: UIViewRepresentable {
 
-  private let sourceView: T
-  private let targetViewFactory: (T) throws -> UIView
-  private let shouldZoomTransform: (T) -> Bool
+  private let image: UIImage
+  private let cornerRadius: CGFloat
 
   public init(
-    sourceView: T,
-    targetViewFactory: @escaping (T) throws -> UIView,
-    shouldZoomTransform: @escaping (T) -> Bool
+    image: UIImage,
+    cornerRadius: CGFloat
   ) {
-    self.sourceView = sourceView
-    self.targetViewFactory = targetViewFactory
-    self.shouldZoomTransform = shouldZoomTransform
+    self.image = image
+    self.cornerRadius = cornerRadius
   }
 
   public func makeUIView(context: Context) -> UIView {
 
     let containerView = UIView(frame: .zero)
 
+    let imageView = UIImageView(image: image)
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
+    imageView.layer.cornerRadius = cornerRadius
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+
     let interactiveZoomView = InteractiveZoomView(
-      sourceView: sourceView,
-      targetViewFactory: targetViewFactory,
-      shouldZoomTransform: shouldZoomTransform
+      sourceView: imageView,
+      targetViewFactory: InteractiveZoomView.clone(from:),
+      shouldZoomTransform: { _ in true }
     )
     interactiveZoomView.translatesAutoresizingMaskIntoConstraints = false
 
-    sourceView.translatesAutoresizingMaskIntoConstraints = false
-
-    containerView.addSubview(sourceView)
+    containerView.addSubview(imageView)
     containerView.addSubview(interactiveZoomView)
 
     NSLayoutConstraint.activate([
-      sourceView.topAnchor.constraint(equalTo: containerView.topAnchor),
-      sourceView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-      sourceView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-      sourceView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-
+      imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+      imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+      imageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+      imageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
       interactiveZoomView.topAnchor.constraint(equalTo: containerView.topAnchor),
       interactiveZoomView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
       interactiveZoomView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
@@ -53,27 +53,9 @@ public struct InteractiveZoomSwiftUIView<T: UIView>: UIViewRepresentable {
   }
 }
 
-extension InteractiveZoomSwiftUIView where T: UIImageView {
-
-  public init(sourceView: T) {
-    self.init(
-      sourceView: sourceView,
-      targetViewFactory: InteractiveZoomView.clone,
-      shouldZoomTransform: InteractiveZoomView.shouldZoomTransform
-    )
-  }
-}
-
 struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
 
-  private static let imageView: UIImageView = {
-    let image = UIImage(systemName: "person")!
-    let imageView = UIImageView(image: image)
-    imageView.contentMode = .scaleAspectFit
-    imageView.clipsToBounds = true
-    imageView.backgroundColor = .white
-    return imageView
-  }()
+  static let image = UIImage(systemName: "person")!
 
   static var previews: some View {
     TabView {
@@ -85,7 +67,7 @@ struct InteractiveZoomSwiftUIView_Previews: PreviewProvider {
               Text("InteractiveZoomSwiftUIView")
                 .font(.headline)
 
-              InteractiveZoomSwiftUIView(sourceView: imageView)
+              InteractiveZoomSwiftUIView(image: image, cornerRadius: 24)
                 .frame(width: 300, height: 300)
                 .border(Color.gray)
             }
